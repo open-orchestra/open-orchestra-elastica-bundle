@@ -1,0 +1,6 @@
+parameters:
+    open_orchestra_elastica.transformer.content.class: OpenOrchestra\Elastica\Transformer\ContentTransformer
+
+services:
+    open_orchestra_elastica.transformer.content:
+        class: %open_orchestra_elastica.transformer.content.class%
