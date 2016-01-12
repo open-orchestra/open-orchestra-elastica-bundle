@@ -1,0 +1,32 @@
+{
+    "name": "open-orchestra/open-orchestra-elastica-bundle",
+    "description": "An bundle to index Open Orchestra element",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "OpenOrchestra community",
+            "homepage": "https://github.com/open-orchestra/open-orchestra-elastica-bundle/graphs/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "open-orchestra/open-orchestra-model-interface": "*",
+        "ruflin/elastica": "~2.1"
+    },
+    "require-dev": {
+        "open-orchestra/open-orchestra-base-bundle": "*",
+        "psr/log": "1.0.0",
+        "codeclimate/php-test-reporter": "dev-master",
+        "phpunit/phpunit" : "4.7.2",
+        "phake/phake": "2.1.0"
+    },
+    "config" : {
+        "bin-dir" : "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenOrchestra\\ElasticaBundle\\": "ElasticaBundle/",
+            "OpenOrchestra\\Elastica\\": "Elastica/"
+        }
+    }
+}

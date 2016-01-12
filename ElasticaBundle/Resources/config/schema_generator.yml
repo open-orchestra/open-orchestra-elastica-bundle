@@ -1,0 +1,9 @@
+parameters:
+    open_orchestra_elastica.schema_generator.content_type.class: OpenOrchestra\Elastica\SchemaGenerator\ContentTypeSchemaGenerator
+
+services:
+    open_orchestra_elastica.schema_generator.content_type:
+        class: %open_orchestra_elastica.schema_generator.content_type.class%
+        arguments:
+            - @open_orchestra_elastica.client.elastica
+            - @open_orchestra_elastica.mapper.form
