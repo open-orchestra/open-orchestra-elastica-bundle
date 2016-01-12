@@ -3,9 +3,9 @@
 namespace OpenOrchestra\Elastica\Mapper;
 
 /**
- * Class FormToElasticaTypeMapper
+ * Class FieldToElasticaTypeMapper
  */
-class FormToElasticaTypeMapper
+class FieldToElasticaTypeMapper
 {
     protected $mapping = array();
 

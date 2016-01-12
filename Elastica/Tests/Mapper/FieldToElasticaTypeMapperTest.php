@@ -2,16 +2,16 @@
 
 namespace OpenOrchestra\Elastica\Tests\Mapper;
 
-use OpenOrchestra\Elastica\Mapper\FormToElasticaTypeMapper;
+use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
 use Phake;
 
 /**
- * Test FormToElasticaTypeMapperTest
+ * Test FieldToElasticaTypeMapperTest
  */
-class FormToElasticaTypeMapperTest extends \PHPUnit_Framework_TestCase
+class FieldToElasticaTypeMapperTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var FormToElasticaTypeMapper
+     * @var FieldToElasticaTypeMapper
      */
     protected $mapper;
 
@@ -20,7 +20,7 @@ class FormToElasticaTypeMapperTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->mapper = new FormToElasticaTypeMapper();
+        $this->mapper = new FieldToElasticaTypeMapper();
     }
 
     /**

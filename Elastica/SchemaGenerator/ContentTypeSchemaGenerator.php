@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Elastica\SchemaGenerator;
 
 use Elastica\Client;
-use OpenOrchestra\Elastica\Mapper\FormToElasticaTypeMapper;
+use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
 use OpenOrchestra\ModelInterface\Model\ContentTypeInterface;
 use OpenOrchestra\ModelInterface\Model\FieldTypeInterface;
 
@@ -17,9 +17,9 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
 
     /**
      * @param Client                   $client
-     * @param FormToElasticaTypeMapper $formMapper
+     * @param FieldToElasticaTypeMapper $formMapper
      */
-    public function __construct(Client $client, FormToElasticaTypeMapper $formMapper)
+    public function __construct(Client $client, FieldToElasticaTypeMapper $formMapper)
     {
         $this->client = $client;
         $this->formMapper = $formMapper;

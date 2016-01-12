@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Elastica\Client;
 use Elastica\Index;
 use Elastica\Type;
-use OpenOrchestra\Elastica\Mapper\FormToElasticaTypeMapper;
+use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
 use OpenOrchestra\Elastica\SchemaGenerator\ContentTypeSchemaGenerator;
 use OpenOrchestra\Elastica\SchemaGenerator\DocumentToElasticaSchemaGeneratorInterface;
 use OpenOrchestra\ModelInterface\Model\ContentTypeInterface;
@@ -35,7 +35,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->elasticaType = 'foo';
-        $this->formMapper = Phake::mock(FormToElasticaTypeMapper::CLASS);
+        $this->formMapper = Phake::mock(FieldToElasticaTypeMapper::CLASS);
         Phake::when($this->formMapper)->map(Phake::anyParameters())->thenReturn($this->elasticaType);
 
         $this->type = Phake::mock(Type::CLASS);
