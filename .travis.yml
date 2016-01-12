@@ -1,0 +1,22 @@
+language: php
+
+cache:
+  directories:
+    - ~/.composer/cache
+
+php:
+  - 5.6
+
+sudo: false
+
+install:
+  - composer install --no-progress --prefer-dist
+
+script: ./bin/phpunit
+
+addons:
+  code_climate:
+    repo_token: fe841bbf59f2ae5e4a803e9edc18804a8597a91d9216c60616a59674613eeebd
+
+after_script:
+  - ./bin/test-reporter
