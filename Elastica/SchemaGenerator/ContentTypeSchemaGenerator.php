@@ -30,7 +30,7 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
      *
      * @param ContentTypeInterface $contentType
      */
-    public function createMaping($contentType)
+    public function createMapping($contentType)
     {
         $index = $this->client->getIndex('content');
         $type = $index->getType('content_' . $contentType->getContentTypeId());

@@ -12,5 +12,5 @@ interface DocumentToElasticaSchemaGeneratorInterface
      *
      * @param mixed $object
      */
-    public function createMaping($object);
+    public function createMapping($object);
 }

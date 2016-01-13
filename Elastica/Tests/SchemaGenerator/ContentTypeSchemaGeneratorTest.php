@@ -77,7 +77,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
         Phake::when($contentType)->getContentTypeId()->thenReturn('contentTypeId');
         Phake::when($contentType)->getFields()->thenReturn($fields);
 
-        $this->schemaGenerator->createMaping($contentType);
+        $this->schemaGenerator->createMapping($contentType);
 
         Phake::verify($this->client)->getIndex('content');
         Phake::verify($this->index)->getType('content_contentTypeId');
