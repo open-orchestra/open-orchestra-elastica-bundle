@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\Elastica\SchemaGenerator;
 
-
 /**
  * Interface DocumentToElasticaSchemaGeneratorInterface
  */
