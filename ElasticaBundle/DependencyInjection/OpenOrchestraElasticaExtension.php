@@ -28,7 +28,7 @@ class OpenOrchestraElasticaExtension extends Extension
         $container->setDefinition('open_orchestra_elastica.client.elastica', $client);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        foreach (array('indexor', 'transformer', 'mapper', 'schema_generator') as $file) {
+        foreach (array('indexor', 'transformer', 'mapper', 'schema_generator', 'subscriber') as $file) {
             $loader->load($file . '.yml');
         }
     }
