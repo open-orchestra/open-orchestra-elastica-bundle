@@ -37,7 +37,7 @@ class UpdateContentIndexedSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $lastPublishedContent = $this->contentRepository->findLastPublishedVersionByContentIdAndLanguage($content->getContentId(), $content->getLanguage());
+        $lastPublishedContent = $this->contentRepository->findLastPublishedVersion($content->getContentId(), $content->getLanguage());
 
         if ($content->getVersion() >= $lastPublishedContent->getVersion()) {
             $this->contentIndexor->index($content);
