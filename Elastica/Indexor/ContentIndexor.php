@@ -65,4 +65,16 @@ class ContentIndexor implements DocumentIndexorInterface, MultipleDocumentIndexo
         $document = $this->transformer->transform($content);
         $type->addDocument($document);
     }
+
+    /**
+     * @param ContentInterface $content
+     */
+    public function delete(ContentInterface $content)
+    {
+        $index = $this->client->getIndex('content');
+        $type = $index->getType('content_' . $content->getContentType());
+        $document = $this->transformer->transform($content);
+        $type->deleteDocument($document);
+        $index->refresh();
+    }
 }

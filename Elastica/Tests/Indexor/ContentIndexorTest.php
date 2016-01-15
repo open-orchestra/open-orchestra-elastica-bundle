@@ -103,4 +103,24 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->type, Phake::times(2))->addDocument($document);
         Phake::verify($this->index)->refresh();
     }
+
+    /**
+     * @param string $contentType
+     *
+     * @dataProvider provideContentTypes
+     */
+    public function testDelete($contentType)
+    {
+        $document = Phake::mock(Document::CLASS);
+        Phake::when($this->transformer)->transform(Phake::anyParameters())->thenReturn($document);
+        $content = Phake::mock(ContentInterface::CLASS);
+        Phake::when($content)->getContentType()->thenReturn($contentType);
+
+        $this->indexor->delete($content);
+
+        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->index)->getType('content_' . $contentType);
+        Phake::verify($this->type)->deleteDocument($document);
+        Phake::verify($this->index)->refresh();
+    }
 }
