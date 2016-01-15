@@ -53,43 +53,35 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param bool $published
-     * @param int  $version
-     * @param int  $indexTime
-     *
-     * @dataProvider provideContentPublishVersionAndIndexTime
+     * Test update indexed content
      */
-    public function testUpdateIndexedContent($published, $version, $indexTime)
+    public function testUpdateIndexedContent()
     {
-        $status = Phake::mock(StatusInterface::CLASS);
-        Phake::when($status)->isPublished()->thenReturn($published);
         $content = Phake::mock(ContentInterface::CLASS);
-        Phake::when($content)->getVersion()->thenReturn($version);
-        Phake::when($content)->getStatus()->thenReturn($status);
         $event = Phake::mock(ContentEvent::CLASS);
         Phake::when($event)->getContent()->thenReturn($content);
 
         $publishedContent = Phake::mock(ContentInterface::CLASS);
-        Phake::when($publishedContent)->getVersion()->thenReturn(2);
         Phake::when($this->contentRepository)->findLastPublishedVersion(Phake::anyParameters())->thenReturn($publishedContent);
 
         $this->subscriber->updateIndexedContent($event);
 
-        Phake::verify($this->indexor, Phake::times($indexTime))->index($content);
+        Phake::verify($this->indexor)->index($publishedContent);
     }
 
     /**
-     * @return array
+     * Test update index with no published document
      */
-    public function provideContentPublishVersionAndIndexTime()
+    public function testUpdateIndexedContentWithNoPublishedContent()
     {
-        return array(
-            'Content not published and olderr' => array(false, 1, 0),
-            'Content not published and same' => array(false, 2, 0),
-            'Content not published and newer' => array(false, 3, 0),
-            'Content published and older' => array(true, 1, 0),
-            'Content published and same' => array(true, 2, 1),
-            'Content published and newer' => array(true, 3, 1),
-        );
+        $content = Phake::mock(ContentInterface::CLASS);
+        $event = Phake::mock(ContentEvent::CLASS);
+        Phake::when($event)->getContent()->thenReturn($content);
+
+        Phake::when($this->contentRepository)->findLastPublishedVersion(Phake::anyParameters())->thenReturn(null);
+
+        $this->subscriber->updateIndexedContent($event);
+
+        Phake::verify($this->indexor)->delete($content);
     }
 }

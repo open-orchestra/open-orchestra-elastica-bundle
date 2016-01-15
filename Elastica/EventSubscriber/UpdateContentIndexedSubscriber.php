@@ -5,6 +5,7 @@ namespace OpenOrchestra\Elastica\EventSubscriber;
 use OpenOrchestra\Elastica\Indexor\ContentIndexor;
 use OpenOrchestra\ModelInterface\ContentEvents;
 use OpenOrchestra\ModelInterface\Event\ContentEvent;
+use OpenOrchestra\ModelInterface\Model\ContentInterface;
 use OpenOrchestra\ModelInterface\Repository\ContentRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -33,14 +34,12 @@ class UpdateContentIndexedSubscriber implements EventSubscriberInterface
     {
         $content = $event->getContent();
 
-        if (!$content->getStatus()->isPublished()) {
-            return;
-        }
-
         $lastPublishedContent = $this->contentRepository->findLastPublishedVersion($content->getContentId(), $content->getLanguage());
 
-        if ($content->getVersion() >= $lastPublishedContent->getVersion()) {
-            $this->contentIndexor->index($content);
+        if ($lastPublishedContent instanceof ContentInterface) {
+            $this->contentIndexor->index($lastPublishedContent);
+        } else {
+            $this->contentIndexor->delete($content);
         }
     }
 
