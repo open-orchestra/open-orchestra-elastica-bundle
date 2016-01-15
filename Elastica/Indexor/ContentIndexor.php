@@ -4,13 +4,14 @@ namespace OpenOrchestra\Elastica\Indexor;
 
 use Elastica\Client;
 use Elastica\Index;
+use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;
 
 /**
  * Class ContentIndexor
  */
-class ContentIndexor implements DocumentIndexorInterface, MultipleDocumentIndexorInterface
+class ContentIndexor implements DocumentIndexorInterface, MultipleDocumentIndexorInterface, DocumentDeletorInterface
 {
     protected $client;
     protected $transformer;
@@ -67,10 +68,16 @@ class ContentIndexor implements DocumentIndexorInterface, MultipleDocumentIndexo
     }
 
     /**
-     * @param ContentInterface $content
+     * @param mixed $content
+     *
+     * @throws IndexorWrongParameterException
      */
-    public function delete(ContentInterface $content)
+    public function delete($content)
     {
+        if (!$content instanceof ContentInterface) {
+            throw new IndexorWrongParameterException();
+        }
+
         $index = $this->client->getIndex('content');
         $type = $index->getType('content_' . $content->getContentType());
         $document = $this->transformer->transform($content);
