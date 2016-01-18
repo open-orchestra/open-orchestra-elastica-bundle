@@ -6,7 +6,9 @@ use Elastica\Client;
 use Elastica\Document;
 use Elastica\Index;
 use Elastica\Type;
+use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
 use OpenOrchestra\Elastica\Indexor\ContentIndexor;
+use OpenOrchestra\Elastica\Indexor\DocumentDeletorInterface;
 use OpenOrchestra\Elastica\Indexor\DocumentIndexorInterface;
 use OpenOrchestra\Elastica\Indexor\MultipleDocumentIndexorInterface;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
@@ -50,6 +52,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
     public function testInstance()
     {
         $this->assertInstanceOf(DocumentIndexorInterface::CLASS, $this->indexor);
+        $this->assertInstanceOf(DocumentDeletorInterface::CLASS, $this->indexor);
         $this->assertInstanceOf(MultipleDocumentIndexorInterface::CLASS, $this->indexor);
     }
 
@@ -102,5 +105,35 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->index, Phake::times(2))->getType('content_' . $contentType);
         Phake::verify($this->type, Phake::times(2))->addDocument($document);
         Phake::verify($this->index)->refresh();
+    }
+
+    /**
+     * @param string $contentType
+     *
+     * @dataProvider provideContentTypes
+     */
+    public function testDelete($contentType)
+    {
+        $document = Phake::mock(Document::CLASS);
+        Phake::when($this->transformer)->transform(Phake::anyParameters())->thenReturn($document);
+        $content = Phake::mock(ContentInterface::CLASS);
+        Phake::when($content)->getContentType()->thenReturn($contentType);
+
+        $this->indexor->delete($content);
+
+        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->index)->getType('content_' . $contentType);
+        Phake::verify($this->type)->deleteDocument($document);
+        Phake::verify($this->index)->refresh();
+    }
+
+    /**
+     * @throws IndexorWrongParameterException
+     */
+    public function testDeleteWithWrongObjectType()
+    {
+        $this->setExpectedException(IndexorWrongParameterException::CLASS);
+
+        $this->indexor->delete(Phake::mock('stdClass'));
     }
 }
