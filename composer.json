@@ -13,8 +13,11 @@
         "open-orchestra/open-orchestra-model-interface": "*",
         "ruflin/elastica": "~2.1"
     },
+    "suggest": {
+        "open-orchestra/open-orchestra-cms-bundle": "To be able to use the admin bundle"
+    },
     "require-dev": {
-        "open-orchestra/open-orchestra-base-bundle": "*",
+        "open-orchestra/open-orchestra-cms-bundle": "*",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "phpunit/phpunit" : "4.7.2",
