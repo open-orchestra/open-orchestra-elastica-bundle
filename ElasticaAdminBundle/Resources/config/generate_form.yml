@@ -1,0 +1,8 @@
+parameters:
+    open_orchestra_elastica_admin.generate_form.search.class: OpenOrchestra\ElasticaAdmin\GenerateForm\ElasticaSearchStrategy
+
+services:
+    open_orchestra_elastica_admin.generate_form.search:
+        class: %open_orchestra_elastica_admin.generate_form.search.class%
+        tags:
+            - { name: open_orchestra_backoffice.generate_form.strategy }

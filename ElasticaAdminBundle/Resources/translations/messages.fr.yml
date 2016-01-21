@@ -1,0 +1,5 @@
+open_orchestra_elastica_admin:
+    block:
+        elastica_search:
+            title: Recherche elastica
+            description: Champs de recherche elastica

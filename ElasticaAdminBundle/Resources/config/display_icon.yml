@@ -1,0 +1,8 @@
+parameters:
+    open_orchestra_elastica_admin.display_icon.search.class: OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaSearchStrategy
+
+services:
+    open_orchestra_elastica_admin.display_icon.search:
+        class: %open_orchestra_elastica_admin.display_icon.search.class%
+        tags:
+            - { name: open_orchestra_backoffice.display_icon.strategy }

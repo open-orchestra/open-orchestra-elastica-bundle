@@ -1,0 +1,10 @@
+open_orchestra_backoffice:
+    block:
+        elastica_search:
+            title: Elastica search block
+
+open_orchestra_elastica_admin:
+    block:
+        elastica_search:
+            title: Elastica search
+            description: Elastica search field
