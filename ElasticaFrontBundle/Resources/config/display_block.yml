@@ -1,0 +1,10 @@
+parameters:
+    open_orchestra_elastica_front.display_block.elastica_search.class: OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy
+services:
+    open_orchestra_elastica_front.display_block.elastica_search:
+        class: %open_orchestra_elastica_front.display_block.elastica_search.class%
+        arguments:
+            - @form.factory
+            - @request_stack
+        tags:
+            - { name: open_orchestra_display.display_block.strategy }
