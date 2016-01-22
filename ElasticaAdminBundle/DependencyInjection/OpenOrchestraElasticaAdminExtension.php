@@ -23,7 +23,7 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        foreach (array('display_block', 'display_icon', 'generate_form') as $file) {
+        foreach (array('display_block', 'display_icon', 'generate_form', 'block_parameter') as $file) {
             $loader->load($file . '.yml');
         }
     }

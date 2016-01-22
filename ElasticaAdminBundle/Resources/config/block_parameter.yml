@@ -1,0 +1,8 @@
+parameters:
+    open_orchestra_elastica_admin.block_parameter.search.class: OpenOrchestra\ElasticaAdmin\BlockParameter\ElasticSearchStrategy
+
+services:
+    open_orchestra_elastica_admin.block_parameter.search:
+        class: %open_orchestra_elastica_admin.block_parameter.search.class%
+        tags:
+            - { name: open_orchestra_backoffice.block_parameter.strategy }
