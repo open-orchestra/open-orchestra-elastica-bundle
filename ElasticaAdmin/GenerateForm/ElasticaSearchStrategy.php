@@ -17,7 +17,7 @@ class ElasticaSearchStrategy extends AbstractBlockStrategy
      */
     public function support(BlockInterface $block)
     {
-        return 'elastica_search' == $block->getComponent();
+        return 'elastica_search' === $block->getComponent();
     }
 
     /**
