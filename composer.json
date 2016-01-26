@@ -32,6 +32,8 @@
         "psr-4": {
             "OpenOrchestra\\ElasticaAdminBundle\\": "ElasticaAdminBundle/",
             "OpenOrchestra\\ElasticaAdmin\\": "ElasticaAdmin/",
+            "OpenOrchestra\\ElasticaFrontBundle\\": "ElasticaFrontBundle/",
+            "OpenOrchestra\\ElasticaFront\\": "ElasticaFront/",
             "OpenOrchestra\\ElasticaBundle\\": "ElasticaBundle/",
             "OpenOrchestra\\Elastica\\": "Elastica/"
         }
