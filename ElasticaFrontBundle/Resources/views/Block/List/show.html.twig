@@ -2,6 +2,9 @@
 
 {% block content %}
     {% for data in searchData %}
-        {{ data.data.name }}<br/>
+        {% for key, value in data.data %}
+            <b>{{ key }}</b> => {{ value }}<br/>
+        {% endfor %}
+        <br/>
     {% endfor %}
 {% endblock %}
