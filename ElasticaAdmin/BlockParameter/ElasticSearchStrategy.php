@@ -17,7 +17,7 @@ class ElasticSearchStrategy implements BlockParameterInterface
      */
     public function support(BlockInterface $block)
     {
-        return 'elastica_search' === $block->getComponent();
+        return in_array($block->getComponent(), array ('elastica_search', 'elastica_list'));
     }
 
     /**

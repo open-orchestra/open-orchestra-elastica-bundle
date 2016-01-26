@@ -20,7 +20,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_search' === $block->getComponent();
+        return in_array($block->getComponent(), array ('elastica_search', 'elastica_list'));
     }
 
     /**

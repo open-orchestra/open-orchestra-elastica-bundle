@@ -64,7 +64,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             'elastica search block' => array(true, 'elastica_search'),
-            'elastica list block' => array(false, 'elastica_list'),
+            'elastica list block' => array(true, 'elastica_list'),
             'foo block' => array(false, 'foo'),
             'bar block' => array(false, 'bar'),
         );

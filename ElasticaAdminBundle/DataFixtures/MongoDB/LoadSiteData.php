@@ -21,6 +21,7 @@ class LoadSiteData extends AbstractFixture implements OrderedFixtureInterface, O
     {
         $site = $this->getReference('site2');
         $site->addBlock('elastica_search');
+        $site->addBlock('elastica_list');
 
         $manager->flush();
     }

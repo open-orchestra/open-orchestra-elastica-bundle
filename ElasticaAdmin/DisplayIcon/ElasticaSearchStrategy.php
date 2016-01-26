@@ -18,7 +18,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support($block)
     {
-        return 'elastica_search' === $block;
+        return in_array($block, array ('elastica_search', 'elastica_list'));
     }
 
     /**
