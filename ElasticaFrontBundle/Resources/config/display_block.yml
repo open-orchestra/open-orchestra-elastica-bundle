@@ -1,0 +1,18 @@
+parameters:
+    open_orchestra_elastica_front.display_block.elastica_search.class: OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy
+    open_orchestra_elastica_front.display_block.elastica_list.class: OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaListStrategy
+services:
+    open_orchestra_elastica_front.display_block.elastica_search:
+        class: %open_orchestra_elastica_front.display_block.elastica_search.class%
+        arguments:
+            - @form.factory
+            - @request_stack
+        tags:
+            - { name: open_orchestra_display.display_block.strategy }
+    open_orchestra_elastica_front.display_block.elastica_list:
+        class: %open_orchestra_elastica_front.display_block.elastica_list.class%
+        arguments:
+            - @request_stack
+            - @open_orchestra_elastica.client.elastica
+        tags:
+            - { name: open_orchestra_display.display_block.strategy }
