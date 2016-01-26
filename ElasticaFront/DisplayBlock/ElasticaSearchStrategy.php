@@ -18,7 +18,8 @@ class ElasticaSearchStrategy extends AbstractStrategy
     protected $requestStack;
 
     /**
-     * @param FormFactory $formFactory
+     * @param FormFactory  $formFactory
+     * @param RequestStack $requestStack
      */
     public function __construct(FormFactory $formFactory, RequestStack $requestStack)
     {

@@ -1,0 +1,7 @@
+{% extends 'OpenOrchestraDisplayBundle:Block:layout.html.twig' %}
+
+{% block content %}
+    {% for data in searchData %}
+        {{ data.data.name }}<br/>
+    {% endfor %}
+{% endblock %}

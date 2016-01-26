@@ -65,6 +65,6 @@ class SearchTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->type->buildForm($builder, array());
 
-        Phake::verify($builder)->add('search');
+        Phake::verify($builder)->add('search', 'text', array('required' => false));
     }
 }
