@@ -6,6 +6,9 @@ use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
 use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Phake;
+use Symfony\Component\Form\FormFactory;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Test ElasticaSearchStrategyTest
@@ -17,12 +20,20 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     protected $strategy;
 
+    protected $formFactory;
+    protected $request;
+
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->strategy = new ElasticaSearchStrategy();
+        $this->formFactory = Phake::mock(FormFactory::CLASS);
+        $this->request = Phake::mock(Request::CLASS);
+        $requestStack = Phake::mock(RequestStack::CLASS);
+        Phake::when($requestStack)->getCurrentRequest()->thenReturn($this->request);
+
+        $this->strategy = new ElasticaSearchStrategy($this->formFactory, $requestStack);
     }
 
     /**
