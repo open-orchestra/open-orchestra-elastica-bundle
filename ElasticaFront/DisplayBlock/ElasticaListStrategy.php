@@ -53,27 +53,25 @@ class ElasticaListStrategy extends AbstractStrategy
         $request = $this->requestStack->getCurrentRequest();
 
         $data = $request->get('elastica_search');
-        $queryMethod = 'match_all';
-        $searchParameter = null;
+        $searchData = array();
         if (is_array($data) && array_key_exists('search', $data) && null != $data['search']) {
             $searchParameter = $data['search'];
-            $queryMethod = 'query_string';
+
+            $index = $this->client->getIndex('content');
+
+            $qb = new QueryBuilder();
+
+            $search = new Search($this->client);
+            $search->addIndex($index);
+            $search->setQuery($qb->query()->filtered(
+                $qb->query()->query_string($searchParameter),
+                $qb->filter()->bool()->addMust(
+                    $qb->filter()->term(array('language' => $request->getLocale()))
+                )
+            ));
+
+            $searchData = $search->search(null, array('limit' => $block->getAttribute('searchLimit')));
         }
-
-        $index = $this->client->getIndex('content');
-
-        $qb = new QueryBuilder();
-
-        $search = new Search($this->client);
-        $search->addIndex($index);
-        $search->setQuery($qb->query()->filtered(
-            $qb->query()->$queryMethod($searchParameter),
-            $qb->filter()->bool()->addMust(
-                $qb->filter()->term(array('language' => $request->getLocale()))
-            )
-        ));
-
-        $searchData = $search->search(null, array('limit' => $block->getAttribute('searchLimit')));
 
         return $this->render('OpenOrchestraElasticaFrontBundle:Block/List:show.html.twig', array(
             'searchData' => $searchData,
