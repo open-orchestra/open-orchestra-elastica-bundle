@@ -3,6 +3,7 @@
 namespace OpenOrchestra\Elastica\Indexor;
 
 use Elastica\Client;
+use Elastica\Exception\NotFoundException;
 use Elastica\Index;
 use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
@@ -81,7 +82,11 @@ class ContentIndexor implements DocumentIndexorInterface, MultipleDocumentIndexo
         $index = $this->client->getIndex('content');
         $type = $index->getType('content_' . $content->getContentType());
         $document = $this->transformer->transform($content);
-        $type->deleteDocument($document);
-        $index->refresh();
+        try {
+            $type->deleteDocument($document);
+            $index->refresh();
+        } catch (NotFoundException $e) {
+
+        }
     }
 }

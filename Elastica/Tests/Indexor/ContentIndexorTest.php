@@ -4,6 +4,7 @@ namespace OpenOrchestra\Elastica\Tests\Indexor;
 
 use Elastica\Client;
 use Elastica\Document;
+use Elastica\Exception\NotFoundException;
 use Elastica\Index;
 use Elastica\Type;
 use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
@@ -125,6 +126,29 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->index)->getType('content_' . $contentType);
         Phake::verify($this->type)->deleteDocument($document);
         Phake::verify($this->index)->refresh();
+    }
+
+    /**
+     * Test when there is no indexed document
+     *
+     * @throws IndexorWrongParameterException
+     *
+     * @dataProvider provideContentTypes
+     */
+    public function testDeleteWithNoIndexedObject($contentType)
+    {
+        $document = Phake::mock(Document::CLASS);
+        Phake::when($this->transformer)->transform(Phake::anyParameters())->thenReturn($document);
+        $content = Phake::mock(ContentInterface::CLASS);
+        Phake::when($content)->getContentType()->thenReturn($contentType);
+        Phake::when($this->type)->deleteDocument(Phake::anyParameters())->thenThrow(new NotFoundException());
+
+        $this->indexor->delete($content);
+
+        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->index)->getType('content_' . $contentType);
+        Phake::verify($this->type)->deleteDocument($document);
+        Phake::verify($this->index, Phake::never())->refresh();
     }
 
     /**
