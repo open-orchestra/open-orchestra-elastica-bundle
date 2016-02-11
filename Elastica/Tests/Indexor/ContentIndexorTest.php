@@ -44,7 +44,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
         $this->client = Phake::mock(Client::CLASS);
         Phake::when($this->client)->getIndex(Phake::anyParameters())->thenReturn($this->index);
 
-        $this->indexor = new ContentIndexor($this->client, $this->transformer);
+        $this->indexor = new ContentIndexor($this->client, $this->transformer, 'content');
     }
 
     /**

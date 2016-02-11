@@ -32,7 +32,8 @@ class OrchestraDeleteIndexCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $index = $this->getContainer()->get('open_orchestra_elastica.client.elastica')->getIndex('content');
+        $indexName = $this->getContainer()->getParameter('open_orchestra_elastica.index.name');;
+        $index = $this->getContainer()->get('open_orchestra_elastica.client.elastica')->getIndex($indexName);
         $index->delete();
     }
 }

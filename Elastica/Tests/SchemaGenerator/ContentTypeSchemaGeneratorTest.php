@@ -44,7 +44,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->client = Phake::mock(Client::CLASS);
         Phake::when($this->client)->getIndex(Phake::anyParameters())->thenReturn($this->index);
 
-        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper);
+        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper, 'content');
     }
 
     /**
