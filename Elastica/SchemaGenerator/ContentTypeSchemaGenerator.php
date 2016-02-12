@@ -13,15 +13,18 @@ use OpenOrchestra\ModelInterface\Model\FieldTypeInterface;
 class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInterface
 {
     protected $client;
+    protected $indexName;
     protected $formMapper;
 
     /**
-     * @param Client                   $client
+     * @param Client                    $client
      * @param FieldToElasticaTypeMapper $formMapper
+     * @param string                    $indexName
      */
-    public function __construct(Client $client, FieldToElasticaTypeMapper $formMapper)
+    public function __construct(Client $client, FieldToElasticaTypeMapper $formMapper, $indexName)
     {
         $this->client = $client;
+        $this->indexName = $indexName;
         $this->formMapper = $formMapper;
     }
 
@@ -32,7 +35,7 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
      */
     public function createMapping($contentType)
     {
-        $index = $this->client->getIndex('content');
+        $index = $this->client->getIndex($this->indexName);
         $type = $index->getType('content_' . $contentType->getContentTypeId());
 
         $mapping = array(

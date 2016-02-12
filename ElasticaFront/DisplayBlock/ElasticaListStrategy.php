@@ -17,15 +17,18 @@ use Symfony\Component\HttpFoundation\Response;
 class ElasticaListStrategy extends AbstractStrategy
 {
     protected $requestStack;
+    protected $indexName;
     protected $client;
 
     /**
      * @param RequestStack $requestStack
      * @param Client       $client
+     * @param string       $indexName
      */
-    public function __construct(RequestStack $requestStack, Client $client)
+    public function __construct(RequestStack $requestStack, Client $client, $indexName)
     {
         $this->requestStack = $requestStack;
+        $this->indexName = $indexName;
         $this->client = $client;
     }
 
@@ -57,7 +60,7 @@ class ElasticaListStrategy extends AbstractStrategy
         if (is_array($data) && array_key_exists('search', $data) && null != $data['search']) {
             $searchParameter = $data['search'];
 
-            $index = $this->client->getIndex('content');
+            $index = $this->client->getIndex($this->indexName);
 
             $qb = new QueryBuilder();
 

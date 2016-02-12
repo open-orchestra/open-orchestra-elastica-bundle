@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode->children()
             ->scalarNode('host')->defaultValue('127.0.0.1')->end()
             ->scalarNode('port')->defaultValue(9200)->end()
+            ->scalarNode('index_name')->defaultValue('content')->end()
         ->end();
 
         return $treeBuilder;
