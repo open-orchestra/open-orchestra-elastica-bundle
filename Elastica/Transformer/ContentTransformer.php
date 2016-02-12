@@ -32,8 +32,10 @@ class ContentTransformer implements ModelToElasticaTransformerInterface
 
         /** @var ContentAttributeInterface $attribute */
         foreach ($content->getAttributes() as $attribute) {
-            $documentData['attribute_' . $attribute->getName()] = $attribute->getValue();
-            $documentData['attribute_' . $attribute->getName() . '_stringValue'] = $attribute->getStringValue();
+            if (null !== $attribute->getValue() && '' !== $attribute->getValue()) {
+                $documentData['attribute_' . $attribute->getName()] = $attribute->getValue();
+                $documentData['attribute_' . $attribute->getName() . '_stringValue'] = $attribute->getStringValue();
+            }
         }
 
         return new Document($documentData['id'], $documentData);

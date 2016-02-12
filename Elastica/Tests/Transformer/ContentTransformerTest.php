@@ -49,6 +49,14 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($attribute2)->getName()->thenReturn('attributeName2');
         Phake::when($attribute2)->getValue()->thenReturn('attributeValue2');
         Phake::when($attribute2)->getStringValue()->thenReturn('stringValue2');
+        $attribute3 = Phake::mock(ContentAttributeInterface::CLASS);
+        Phake::when($attribute3)->getName()->thenReturn('attributeName3');
+        Phake::when($attribute3)->getValue()->thenReturn('');
+        Phake::when($attribute3)->getStringValue()->thenReturn('stringValue3');
+        $attribute4 = Phake::mock(ContentAttributeInterface::CLASS);
+        Phake::when($attribute4)->getName()->thenReturn('attributeName4');
+        Phake::when($attribute4)->getValue()->thenReturn(null);
+        Phake::when($attribute4)->getStringValue()->thenReturn('stringValue4');
 
         $attributes = new ArrayCollection();
         $attributes->add($attribute);
