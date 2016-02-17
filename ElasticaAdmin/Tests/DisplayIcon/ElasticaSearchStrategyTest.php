@@ -2,8 +2,8 @@
 
 namespace OpenOrchestra\ElasticaAdmin\Tests\DisplayIcon;
 
-use OpenOrchestra\BackofficeBundle\DisplayIcon\DisplayInterface;
-use OpenOrchestra\BackofficeBundle\DisplayIcon\DisplayManager;
+use OpenOrchestra\Backoffice\DisplayIcon\DisplayInterface;
+use OpenOrchestra\Backoffice\DisplayIcon\DisplayManager;
 use OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaSearchStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Phake;
