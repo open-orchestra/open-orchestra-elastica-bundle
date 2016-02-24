@@ -32,10 +32,6 @@ class OrchestraCreateSchemaCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $contentTypes = $this->getContainer()->get('open_orchestra_model.repository.content_type')->findAllNotDeletedInLastVersion();
-
-        foreach ($contentTypes as $contentType) {
-            $this->getContainer()->get('open_orchestra_elastica.schema_generator.content_type')->createMapping($contentType);
-        }
+        $this->getContainer()->get('open_orchestra_elastica.schema_initializer.manager')->initialize();
     }
 }
