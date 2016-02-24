@@ -32,13 +32,6 @@ class OrchestraPopulateCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        foreach ($this->getContainer()->getParameter('open_orchestra_backoffice.orchestra_choice.front_language') as $language => $key) {
-            $contents = $this
-                ->getContainer()
-                ->get('open_orchestra_model.repository.content')
-                ->findByContentTypeAndKeywords($language);
-
-            $this->getContainer()->get('open_orchestra_elastica.indexor.content')->indexMultiple($contents);
-        }
+        $this->getContainer()->get('open_orchestra_elastica.populator.manager')->populate();
     }
 }
