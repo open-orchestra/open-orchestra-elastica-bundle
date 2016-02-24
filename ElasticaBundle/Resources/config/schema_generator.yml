@@ -8,3 +8,4 @@ services:
             - @open_orchestra_elastica.client.elastica
             - @open_orchestra_elastica.mapper.form
             - %open_orchestra_elastica.index.name%
+            - @open_orchestra_elastica.factory.mapping

@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Elastica\SchemaGenerator;
 
 use Elastica\Client;
-use Elastica\Type\Mapping;
+use OpenOrchestra\Elastica\Factory\MappingFactory;
 use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
 use OpenOrchestra\ModelInterface\Model\ContentTypeInterface;
 use OpenOrchestra\ModelInterface\Model\FieldTypeInterface;
@@ -16,17 +16,20 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
     protected $client;
     protected $indexName;
     protected $formMapper;
+    protected $mappingFactory;
 
     /**
      * @param Client                    $client
      * @param FieldToElasticaTypeMapper $formMapper
      * @param string                    $indexName
+     * @param MappingFactory            $mappingFactory
      */
-    public function __construct(Client $client, FieldToElasticaTypeMapper $formMapper, $indexName)
+    public function __construct(Client $client, FieldToElasticaTypeMapper $formMapper, $indexName, MappingFactory $mappingFactory)
     {
         $this->client = $client;
         $this->indexName = $indexName;
         $this->formMapper = $formMapper;
+        $this->mappingFactory = $mappingFactory;
     }
 
     /**
@@ -57,7 +60,7 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
             }
         }
 
-        $mapping = new Mapping($type);
+        $mapping = $this->mappingFactory->create($type);
 //        $mapping->setParam('index_analyzer', 'indexAnalyzer');
 //        $mapping->setParam('search_analyzer', 'searchAnalyzer');
         $mapping->setProperties($mappingProperties);
