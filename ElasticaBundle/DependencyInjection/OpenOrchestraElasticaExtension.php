@@ -29,7 +29,7 @@ class OpenOrchestraElasticaExtension extends Extension
 
         $container->setParameter('open_orchestra_elastica.index.name', $config['index_name']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        foreach (array('indexor', 'transformer', 'mapper', 'schema_generator', 'subscriber') as $file) {
+        foreach (array('indexor', 'transformer', 'mapper', 'schema_generator', 'subscriber', 'factory', 'schema_initializer') as $file) {
             $loader->load($file . '.yml');
         }
     }

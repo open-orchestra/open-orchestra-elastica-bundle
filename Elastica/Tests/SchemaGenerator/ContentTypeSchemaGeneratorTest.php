@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Elastica\Client;
 use Elastica\Index;
 use Elastica\Type;
+use Elastica\Type\Mapping;
+use OpenOrchestra\Elastica\Factory\MappingFactory;
 use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
 use OpenOrchestra\Elastica\SchemaGenerator\ContentTypeSchemaGenerator;
 use OpenOrchestra\Elastica\SchemaGenerator\DocumentToElasticaSchemaGeneratorInterface;
@@ -28,12 +30,15 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
     protected $client;
     protected $formMapper;
     protected $elasticaType;
+    protected $mappingFactory;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
+        $this->mappingFactory = Phake::mock(MappingFactory::CLASS);
+
         $this->elasticaType = 'foo';
         $this->formMapper = Phake::mock(FieldToElasticaTypeMapper::CLASS);
         Phake::when($this->formMapper)->map(Phake::anyParameters())->thenReturn($this->elasticaType);
@@ -44,7 +49,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->client = Phake::mock(Client::CLASS);
         Phake::when($this->client)->getIndex(Phake::anyParameters())->thenReturn($this->index);
 
-        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper, 'content');
+        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper, 'content', $this->mappingFactory);
     }
 
     /**
@@ -62,6 +67,9 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateMapping($fieldType)
     {
+        $mapping = Phake::mock(Mapping::CLASS);
+        Phake::when($this->mappingFactory)->create(Phake::anyParameters())->thenReturn($mapping);
+
         $field1 = Phake::mock(FieldTypeInterface::CLASS);
         Phake::when($field1)->getFieldId()->thenReturn('fieldId1');
         Phake::when($field1)->isSearchable()->thenReturn(true);
@@ -81,7 +89,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
 
         Phake::verify($this->client)->getIndex('content');
         Phake::verify($this->index)->getType('content_contentTypeId');
-        Phake::verify($this->type)->setMapping(array(
+        Phake::verify($mapping)->setProperties(array(
             'id' => array('type' => 'string', 'include_in_all' => true),
             'elementId' => array('type' => 'string', 'include_in_all' => true),
             'contentId' => array('type' => 'string', 'include_in_all' => true),
@@ -90,7 +98,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
             'language' => array('type' => 'string', 'include_in_all' => true),
             'contentType' => array('type' => 'string', 'include_in_all' => true),
             'attribute_fieldId1' => array('type' => $this->elasticaType, 'include_in_all' => false),
-            'attribute_fieldId1_stringValue' => array('type' => 'string', 'include_in_all' => false),
+            'attribute_fieldId1_stringValue' => array('type' => 'string', 'include_in_all' => true),
         ));
         Phake::verify($field1)->isSearchable();
         Phake::verify($field2)->isSearchable();

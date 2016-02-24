@@ -34,6 +34,13 @@ class OrchestraCreateIndexCommand extends ContainerAwareCommand
     {
         $indexName = $this->getContainer()->getParameter('open_orchestra_elastica.index.name');
         $index = $this->getContainer()->get('open_orchestra_elastica.client.elastica')->getIndex($indexName);
-        $index->create(array('index' => array('number_of_shards' => 2, 'number_of_replicas' => 1)));
+        $index->create(
+            array(
+                'index' => array(
+                    'number_of_shards' => 2,
+                    'number_of_replicas' => 1
+                )
+            )
+        );
     }
 }
