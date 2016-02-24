@@ -61,8 +61,6 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
         }
 
         $mapping = $this->mappingFactory->create($type);
-//        $mapping->setParam('index_analyzer', 'indexAnalyzer');
-//        $mapping->setParam('search_analyzer', 'searchAnalyzer');
         $mapping->setProperties($mappingProperties);
         $mapping->send();
     }
