@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\ElasticaAdmin\DisplayIcon;
 
-use OpenOrchestra\Backoffice\DisplayIcon\Strategies\AbstractStrategy;
+use OpenOrchestra\BackofficeBundle\DisplayIcon\Strategies\AbstractStrategy;
 
 /**
  * Class ElasticaSearchStrategy
