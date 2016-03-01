@@ -20,7 +20,7 @@ class ContentPopulator implements ElasticaPopulatorInterface
      * @param ContentRepositoryInterface       $contentRepository
      * @param array                            $languages
      */
-    public function __construct(MultipleDocumentIndexorInterface $multipleIndexor, ContentRepositoryInterface $contentRepository, array $languages)
+    public function __construct(MultipleDocumentIndexorInterface $multipleIndexor, ContentRepositoryInterface $contentRepository, array $languages = array())
     {
         $this->languages = $languages;
         $this->multipleIndexor = $multipleIndexor;
