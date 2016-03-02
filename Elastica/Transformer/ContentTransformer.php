@@ -26,6 +26,7 @@ class ContentTransformer implements ModelToElasticaTransformerInterface
             'contentId' => $content->getContentId(),
             'name' => $content->getName(),
             'siteId' => $content->getSiteId(),
+            'linkedToSite' => $content->isLinkedToSite(),
             'language' => $content->getLanguage(),
             'contentType' => $content->getContentType(),
         );

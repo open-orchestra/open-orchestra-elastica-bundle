@@ -70,6 +70,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($content)->getLanguage()->thenReturn('language');
         Phake::when($content)->getContentType()->thenReturn('contentType');
         Phake::when($content)->getAttributes()->thenReturn($attributes);
+        Phake::when($content)->isLinkedToSite()->thenReturn(true);
 
         $document = $this->transformer->transform($content);
 
@@ -82,6 +83,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
             'contentId' => 'contentId',
             'name' => 'name',
             'siteId' => 'siteId',
+            'linkedToSite' => true,
             'language' => 'language',
             'contentType' => 'contentType',
             'attribute_attributeName' => 'attributeValue',
