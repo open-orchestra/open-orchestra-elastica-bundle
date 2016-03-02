@@ -29,6 +29,7 @@ class ContentTransformer implements ModelToElasticaTransformerInterface
             'linkedToSite' => $content->isLinkedToSite(),
             'language' => $content->getLanguage(),
             'contentType' => $content->getContentType(),
+            'updatedAt' => $content->getUpdatedAt(),
         );
 
         /** @var ContentAttributeInterface $attribute */

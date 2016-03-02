@@ -98,6 +98,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
             'linkedToSite' => array('type' => 'boolean', 'include_in_all' => false),
             'language' => array('type' => 'string', 'include_in_all' => true),
             'contentType' => array('type' => 'string', 'include_in_all' => true),
+            'updatedAt' => array('type' => 'date', 'include_in_all' => false),
             'attribute_fieldId1' => array('type' => $this->elasticaType, 'include_in_all' => false),
             'attribute_fieldId1_stringValue' => array('type' => 'string', 'include_in_all' => true),
         ));
