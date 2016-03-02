@@ -48,8 +48,10 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
             'contentId' => array('type' => 'string', 'include_in_all' => true),
             'name' => array('type' => 'string', 'include_in_all' => true),
             'siteId' => array('type' => 'string', 'include_in_all' => true),
+            'linkedToSite' => array('type' => 'boolean', 'include_in_all' => false),
             'language' => array('type' => 'string', 'include_in_all' => true),
             'contentType' => array('type' => 'string', 'include_in_all' => true),
+            'updatedAt' => array('type' => 'date', 'include_in_all' => false),
         );
 
         /** @var FieldTypeInterface $field */

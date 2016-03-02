@@ -58,6 +58,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($attribute4)->getValue()->thenReturn(null);
         Phake::when($attribute4)->getStringValue()->thenReturn('stringValue4');
 
+        $date = new \DateTime();
         $attributes = new ArrayCollection();
         $attributes->add($attribute);
         $attributes->add($attribute2);
@@ -70,6 +71,8 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($content)->getLanguage()->thenReturn('language');
         Phake::when($content)->getContentType()->thenReturn('contentType');
         Phake::when($content)->getAttributes()->thenReturn($attributes);
+        Phake::when($content)->isLinkedToSite()->thenReturn(true);
+        Phake::when($content)->getUpdatedAt()->thenReturn($date);
 
         $document = $this->transformer->transform($content);
 
@@ -82,8 +85,10 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
             'contentId' => 'contentId',
             'name' => 'name',
             'siteId' => 'siteId',
+            'linkedToSite' => true,
             'language' => 'language',
             'contentType' => 'contentType',
+            'updatedAt' => $date,
             'attribute_attributeName' => 'attributeValue',
             'attribute_attributeName_stringValue' => 'stringValue',
             'attribute_attributeName2' => 'attributeValue2',
