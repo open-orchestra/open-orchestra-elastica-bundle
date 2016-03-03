@@ -18,7 +18,5 @@ services:
             - @request_stack
             - @open_orchestra_elastica.client.elastica
             - %open_orchestra_elastica.index.name%
-            - @form.factory
-            - @router
         tags:
             - { name: open_orchestra_display.display_block.strategy }
