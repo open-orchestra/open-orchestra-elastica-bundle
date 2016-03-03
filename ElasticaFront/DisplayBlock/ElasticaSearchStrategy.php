@@ -36,8 +36,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
         RouterInterface $router,
         ReadNodeRepositoryInterface $nodeRepository,
         CurrentSiteIdInterface $currentSiteManager
-    )
-    {
+    ) {
         $this->router = $router;
         $this->formFactory = $formFactory;
         $this->requestStack = $requestStack;
