@@ -2,13 +2,16 @@
 
 namespace OpenOrchestra\ElasticaFront\Tests\DisplayBlock;
 
+use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
 use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
+use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
 use Phake;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Test ElasticaSearchStrategyTest
@@ -20,20 +23,26 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     protected $strategy;
 
+    protected $currentSiteManager;
+    protected $nodeRepository;
     protected $formFactory;
     protected $request;
+    protected $router;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
+        $this->currentSiteManager = Phake::mock(CurrentSiteIdInterface::CLASS);
+        $this->nodeRepository = Phake::mock(ReadNodeRepositoryInterface::CLASS);
+        $this->router = Phake::mock(RouterInterface::CLASS);
         $this->formFactory = Phake::mock(FormFactory::CLASS);
         $this->request = Phake::mock(Request::CLASS);
         $requestStack = Phake::mock(RequestStack::CLASS);
         Phake::when($requestStack)->getCurrentRequest()->thenReturn($this->request);
 
-        $this->strategy = new ElasticaSearchStrategy($this->formFactory, $requestStack);
+        $this->strategy = new ElasticaSearchStrategy($this->formFactory, $requestStack, $this->router, $this->nodeRepository, $this->currentSiteManager);
     }
 
     /**
