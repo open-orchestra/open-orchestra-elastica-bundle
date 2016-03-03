@@ -7,6 +7,9 @@ services:
         arguments:
             - @form.factory
             - @request_stack
+            - @router
+            - @open_orchestra_model.repository.node
+            - @open_orchestra_display.manager.site
         tags:
             - { name: open_orchestra_display.display_block.strategy }
     open_orchestra_elastica_front.display_block.elastica_list:

@@ -88,7 +88,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
             'linkedToSite' => true,
             'language' => 'language',
             'contentType' => 'contentType',
-            'updatedAt' => $date,
+            'updatedAt' => $date->getTimestamp(),
             'attribute_attributeName' => 'attributeValue',
             'attribute_attributeName_stringValue' => 'stringValue',
             'attribute_attributeName2' => 'attributeValue2',

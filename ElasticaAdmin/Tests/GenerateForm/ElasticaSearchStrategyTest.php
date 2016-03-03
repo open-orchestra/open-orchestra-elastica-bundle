@@ -6,6 +6,8 @@ use OpenOrchestra\Backoffice\GenerateForm\GenerateFormInterface;
 use OpenOrchestra\ElasticaAdmin\GenerateForm\ElasticaSearchStrategy;
 use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Phake;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Test ElasticaSearchStrategyTest
@@ -66,5 +68,20 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
             'foo block' => array(false, 'foo'),
             'bar block' => array(false, 'bar'),
         );
+    }
+
+    /**
+     * Test build form
+     */
+    public function testBuildForm()
+    {
+        $builder = Phake::mock(FormBuilderInterface::CLASS);
+
+        $this->strategy->buildForm($builder, array());
+
+        Phake::verify($builder)->add('contentNodeId', 'oo_node_choice', array(
+            'label' => 'open_orchestra_backoffice.form.content_list.node',
+            'constraints' => new NotBlank(),
+        ));
     }
 }
