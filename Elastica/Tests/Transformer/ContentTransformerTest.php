@@ -43,7 +43,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
     public function testTransform()
     {
         $keyword = Phake::mock(KeywordInterface::CLASS);
-        Phake::when($keyword)->getLable()->thenReturn('keywordLabel');
+        Phake::when($keyword)->getLabel()->thenReturn('keywordLabel');
 
         $attribute = Phake::mock(ContentAttributeInterface::CLASS);
         Phake::when($attribute)->getName()->thenReturn('attributeName');
@@ -77,7 +77,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($content)->getAttributes()->thenReturn($attributes);
         Phake::when($content)->isLinkedToSite()->thenReturn(true);
         Phake::when($content)->getUpdatedAt()->thenReturn($date);
-        Phake::when($keyword)->getKeywords()->thenReturn(array($keyword, $keyword));
+        Phake::when($content)->getKeywords()->thenReturn(array($keyword, $keyword));
 
         $document = $this->transformer->transform($content);
 
