@@ -8,6 +8,7 @@ use OpenOrchestra\Elastica\Transformer\ContentTransformer;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
 use OpenOrchestra\ModelInterface\Model\ContentAttributeInterface;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;
+use OpenOrchestra\ModelInterface\Model\KeywordInterface;
 use Phake;
 
 /**
@@ -41,6 +42,9 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function testTransform()
     {
+        $keyword = Phake::mock(KeywordInterface::CLASS);
+        Phake::when($keyword)->getLable()->thenReturn('keywordLabel');
+
         $attribute = Phake::mock(ContentAttributeInterface::CLASS);
         Phake::when($attribute)->getName()->thenReturn('attributeName');
         Phake::when($attribute)->getValue()->thenReturn('attributeValue');
@@ -73,6 +77,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($content)->getAttributes()->thenReturn($attributes);
         Phake::when($content)->isLinkedToSite()->thenReturn(true);
         Phake::when($content)->getUpdatedAt()->thenReturn($date);
+        Phake::when($keyword)->getKeywords()->thenReturn(array($keyword, $keyword));
 
         $document = $this->transformer->transform($content);
 
@@ -88,6 +93,7 @@ class ContentTransformerTest extends \PHPUnit_Framework_TestCase
             'linkedToSite' => true,
             'language' => 'language',
             'contentType' => 'contentType',
+            'keywords' => 'keywordLabel,keywordLabel',
             'updatedAt' => $date->getTimestamp(),
             'attribute_attributeName' => 'attributeValue',
             'attribute_attributeName_stringValue' => 'stringValue',
