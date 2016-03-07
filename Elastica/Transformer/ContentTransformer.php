@@ -20,6 +20,11 @@ class ContentTransformer implements ModelToElasticaTransformerInterface
      */
     public function transform($content)
     {
+        $keywords = array();
+        foreach ($content->getKeywords() as $keyword) {
+            $keywords[] = $keyword->getLabel();
+        }
+
         $documentData = array(
             'id' => $content->getContentId() . '-' . $content->getLanguage(),
             'elementId' => $content->getId(),
@@ -29,6 +34,7 @@ class ContentTransformer implements ModelToElasticaTransformerInterface
             'linkedToSite' => $content->isLinkedToSite(),
             'language' => $content->getLanguage(),
             'contentType' => $content->getContentType(),
+            'keywords' => implode(',', $keywords),
             'updatedAt' => $content->getUpdatedAt()->getTimestamp(),
         );
 

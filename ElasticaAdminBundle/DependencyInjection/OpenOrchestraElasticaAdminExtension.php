@@ -22,6 +22,7 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('open_orchestra_elastica.orchestra_choice.front_language', $container->getParameter('open_orchestra_backoffice.orchestra_choice.front_language'));
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         foreach (array('display_block', 'display_icon', 'generate_form', 'block_parameter') as $file) {
             $loader->load($file . '.yml');
