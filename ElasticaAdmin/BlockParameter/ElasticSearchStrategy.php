@@ -10,6 +10,8 @@ use OpenOrchestra\ModelInterface\Model\BlockInterface;
  */
 class ElasticSearchStrategy implements BlockParameterInterface
 {
+    const NAME = 'elastica_search';
+
     /**
      * @param BlockInterface $block
      *
@@ -17,7 +19,7 @@ class ElasticSearchStrategy implements BlockParameterInterface
      */
     public function support(BlockInterface $block)
     {
-        return in_array($block->getComponent(), array ('elastica_search', 'elastica_list'));
+        return in_array($block->getComponent(), array (self::NAME, 'elastica_list'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ElasticSearchStrategy implements BlockParameterInterface
      */
     public function getBlockParameter()
     {
-        return array('request.elastica_search');
+        return array('request'.self::NAME);
     }
 
     /**

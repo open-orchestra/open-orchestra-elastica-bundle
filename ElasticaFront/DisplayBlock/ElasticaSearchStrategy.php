@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ElasticaSearchStrategy extends AbstractStrategy
 {
+    const NAME = 'elastica_search';
+
     protected $formFactory;
     protected $requestStack;
 
@@ -36,7 +38,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_search' == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**
@@ -48,7 +50,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function show(ReadBlockInterface $block)
     {
-        $formData = $this->requestStack->getCurrentRequest()->get('elastica_search');
+        $formData = $this->requestStack->getCurrentRequest()->get(self::NAME);
         $form = $this->formFactory->create(new SearchType(), $formData, array(
             'method' => 'GET',
         ));
@@ -75,6 +77,6 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function getName()
     {
-        return 'elastica_search';
+        return self::NAME;
     }
 }

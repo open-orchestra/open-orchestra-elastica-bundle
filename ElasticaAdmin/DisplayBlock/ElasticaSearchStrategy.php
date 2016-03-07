@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ElasticaSearchStrategy extends AbstractStrategy
 {
+    const NAME = 'elastica_search';
+
     /**
      * Check if the strategy support this block
      *
@@ -20,7 +22,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return in_array($block->getComponent(), array ('elastica_search', 'elastica_list'));
+        return in_array($block->getComponent(), array (self::NAME, 'elastica_list'));
     }
 
     /**
