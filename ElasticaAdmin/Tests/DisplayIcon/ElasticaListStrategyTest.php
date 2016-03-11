@@ -4,17 +4,17 @@ namespace OpenOrchestra\ElasticaAdmin\Tests\DisplayIcon;
 
 use OpenOrchestra\Backoffice\DisplayIcon\DisplayInterface;
 use OpenOrchestra\Backoffice\DisplayIcon\DisplayManager;
-use OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaSearchStrategy;
+use OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaListStrategy;
 use Phake;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
- * Test ElasticaSearchStrategyTest
+ * Test ElasticaListStrategyTest
  */
-class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
+class ElasticaListStrategyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var ElasticaSearchStrategy
+     * @var ElasticaListStrategy
      */
     protected $strategy;
 
@@ -23,7 +23,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->strategy = new ElasticaSearchStrategy();
+        $this->strategy = new ElasticaListStrategy();
     }
 
     /**
@@ -39,7 +39,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertSame('elastica_search', $this->strategy->getName());
+        $this->assertSame('elastica_list', $this->strategy->getName());
     }
 
     /**
@@ -59,8 +59,8 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
     public function provideSupportsLinkedToBlockComponent()
     {
         return array(
-            'elastica search block' => array(true, 'elastica_search'),
-            'elastica list block' => array(false, 'elastica_list'),
+            'elastica search block' => array(false, 'elastica_search'),
+            'elastica list block' => array(true, 'elastica_list'),
             'foo block' => array(false, 'foo'),
             'bar block' => array(false, 'bar'),
         );
@@ -79,7 +79,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
         $this->strategy->show();
 
         Phake::verify($templating)->render(
-            'OpenOrchestraElasticaAdminBundle:Block/Search:showIcon.html.twig',
+            'OpenOrchestraElasticaAdminBundle:Block/List:showIcon.html.twig',
             array()
         );
     }
