@@ -7,9 +7,9 @@ use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ElasticaSearchStrategy
+ * Class ElasticaListStrategy
  */
-class ElasticaSearchStrategy extends AbstractStrategy
+class ElasticaListStrategy extends AbstractStrategy
 {
     /**
      * Check if the strategy support this block
@@ -20,7 +20,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_search' === $block->getComponent();
+        return 'elastica_list' === $block->getComponent();
     }
 
     /**
@@ -32,7 +32,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function show(ReadBlockInterface $block)
     {
-        return $this->render('OpenOrchestraElasticaAdminBundle:Block/Search:show.html.twig', array(
+        return $this->render('OpenOrchestraElasticaAdminBundle:Block/List:show.html.twig', array(
             'id' => $block->getId(),
             'class' => $block->getClass(),
         ));
@@ -55,6 +55,6 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function getName()
     {
-        return 'elastica_search';
+        return 'elastica_list';
     }
 }

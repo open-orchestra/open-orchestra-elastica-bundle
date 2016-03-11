@@ -1,8 +1,13 @@
 parameters:
     open_orchestra_elastica_admin.display_icon.search.class: OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaSearchStrategy
+    open_orchestra_elastica_admin.display_icon.list.class: OpenOrchestra\ElasticaAdmin\DisplayIcon\ElasticaListStrategy
 
 services:
     open_orchestra_elastica_admin.display_icon.search:
         class: %open_orchestra_elastica_admin.display_icon.search.class%
+        tags:
+            - { name: open_orchestra_backoffice.display_icon.strategy }
+    open_orchestra_elastica_admin.display_icon.list:
+        class: %open_orchestra_elastica_admin.display_icon.list.class%
         tags:
             - { name: open_orchestra_backoffice.display_icon.strategy }

@@ -4,18 +4,18 @@ namespace OpenOrchestra\ElasticaAdmin\Tests\DisplayBlock;
 
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockManager;
-use OpenOrchestra\ElasticaAdmin\DisplayBlock\ElasticaSearchStrategy;
+use OpenOrchestra\ElasticaAdmin\DisplayBlock\ElasticaListStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Phake;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 /**
- * Test ElasticaSearchStrategyTest
+ * Test ElasticaListStrategyTest
  */
-class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
+class ElasticaListStrategyTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var ElasticaSearchStrategy
+     * @var ElasticaListStrategy
      */
     protected $strategy;
 
@@ -24,7 +24,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->strategy = new ElasticaSearchStrategy();
+        $this->strategy = new ElasticaListStrategy();
     }
 
     /**
@@ -40,7 +40,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertSame('elastica_search', $this->strategy->getName());
+        $this->assertSame('elastica_list', $this->strategy->getName());
     }
 
     /**
@@ -63,8 +63,8 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
     public function provideSupportsLinkedToBlockComponent()
     {
         return array(
-            'elastica search block' => array(true, 'elastica_search'),
-            'elastica list block' => array(false, 'elastica_list'),
+            'elastica search block' => array(false, 'elastica_search'),
+            'elastica list block' => array(true, 'elastica_list'),
             'foo block' => array(false, 'foo'),
             'bar block' => array(false, 'bar'),
         );
@@ -87,7 +87,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
         $this->strategy->show($block);
 
         Phake::verify($templating)->renderResponse(
-            'OpenOrchestraElasticaAdminBundle:Block/Search:show.html.twig',
+            'OpenOrchestraElasticaAdminBundle:Block/List:show.html.twig',
             array('id' => 'id', 'class' => 'class'),
             null
         );

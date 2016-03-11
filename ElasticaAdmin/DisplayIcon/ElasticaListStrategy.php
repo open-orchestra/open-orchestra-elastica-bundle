@@ -5,9 +5,9 @@ namespace OpenOrchestra\ElasticaAdmin\DisplayIcon;
 use OpenOrchestra\Backoffice\DisplayIcon\Strategies\AbstractStrategy;
 
 /**
- * Class ElasticaSearchStrategy
+ * Class ElasticaListStrategy
  */
-class ElasticaSearchStrategy extends AbstractStrategy
+class ElasticaListStrategy extends AbstractStrategy
 {
     /**
      * Check if the strategy support this block
@@ -18,7 +18,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support($block)
     {
-        return 'elastica_search' === $block;
+        return 'elastica_list' === $block;
     }
 
     /**
@@ -28,7 +28,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function show()
     {
-        return $this->render('OpenOrchestraElasticaAdminBundle:Block/Search:showIcon.html.twig');
+        return $this->render('OpenOrchestraElasticaAdminBundle:Block/List:showIcon.html.twig');
     }
 
     /**
@@ -38,6 +38,6 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function getName()
     {
-        return 'elastica_search';
+        return 'elastica_list';
     }
 }
