@@ -12,7 +12,7 @@ open_orchestra_elastica_admin:
             description: Champs de recherche elastica
         elastica_list:
             title: Elastica block liste de résultat
-            description: Liste de résultat de la recherche
+            description: Liste de résultats de la recherche
     form:
         elastica_list:
             search_limit: Limite de résultat
