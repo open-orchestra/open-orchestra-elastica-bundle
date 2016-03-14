@@ -5,6 +5,7 @@ namespace OpenOrchestra\ElasticaAdmin\DisplayBlock;
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy as BaseElasticaSearchStrategy;
 
 /**
  * Class ElasticaSearchStrategy
@@ -20,7 +21,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_search' === $block->getComponent();
+        return BaseElasticaSearchStrategy::NAME === $block->getComponent();
     }
 
     /**
@@ -41,7 +42,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
     /**
      * @param ReadBlockInterface $block
      *
-     * @return Array
+     * @return array
      */
     public function getCacheTags(ReadBlockInterface $block)
     {

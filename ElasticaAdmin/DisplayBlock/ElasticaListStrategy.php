@@ -5,6 +5,7 @@ namespace OpenOrchestra\ElasticaAdmin\DisplayBlock;
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaListStrategy as BaseElasticaListStrategy;
 
 /**
  * Class ElasticaListStrategy
@@ -20,7 +21,7 @@ class ElasticaListStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_list' === $block->getComponent();
+        return BaseElasticaListStrategy::NAME == $block->getComponent();
     }
 
     /**

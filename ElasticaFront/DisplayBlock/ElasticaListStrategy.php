@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ElasticaListStrategy extends AbstractStrategy
 {
+    const NAME = 'elastica_list';
+
     protected $requestStack;
     protected $indexName;
     protected $client;
@@ -41,7 +43,7 @@ class ElasticaListStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return 'elastica_list' == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**

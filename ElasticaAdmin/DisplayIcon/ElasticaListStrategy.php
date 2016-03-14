@@ -3,6 +3,7 @@
 namespace OpenOrchestra\ElasticaAdmin\DisplayIcon;
 
 use OpenOrchestra\Backoffice\DisplayIcon\Strategies\AbstractStrategy;
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaListStrategy as BaseElasticaListStrategy;
 
 /**
  * Class ElasticaListStrategy
@@ -18,7 +19,7 @@ class ElasticaListStrategy extends AbstractStrategy
      */
     public function support($block)
     {
-        return 'elastica_list' === $block;
+        return BaseElasticaListStrategy::NAME === $block;
     }
 
     /**
