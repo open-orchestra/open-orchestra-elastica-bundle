@@ -3,6 +3,7 @@
 namespace OpenOrchestra\ElasticaAdmin\DisplayIcon;
 
 use OpenOrchestra\Backoffice\DisplayIcon\Strategies\AbstractStrategy;
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy as BaseElasticaSearchStrategy;
 
 /**
  * Class ElasticaSearchStrategy
@@ -18,7 +19,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
      */
     public function support($block)
     {
-        return 'elastica_search' === $block;
+        return BaseElasticaSearchStrategy::NAME === $block;
     }
 
     /**

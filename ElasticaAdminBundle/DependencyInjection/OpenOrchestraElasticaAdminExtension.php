@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\ElasticaAdminBundle\DependencyInjection;
 
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaListStrategy;
+use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -27,5 +29,25 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         foreach (array('display_block', 'display_icon', 'generate_form', 'block_parameter') as $file) {
             $loader->load($file . '.yml');
         }
+
+        $this->updateBlockParameter($container);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     */
+    protected function updateBlockParameter(ContainerBuilder $container)
+    {
+        $blockType = array(
+            ElasticaListStrategy::NAME,
+            ElasticaSearchStrategy::NAME,
+        );
+
+        $blocksAlreadySet = array();
+        if ($container->hasParameter('open_orchestra.blocks')) {
+            $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
+        }
+        $blocks = array_merge($blocksAlreadySet, $blockType);
+        $container->setParameter('open_orchestra.blocks', $blocks);
     }
 }
