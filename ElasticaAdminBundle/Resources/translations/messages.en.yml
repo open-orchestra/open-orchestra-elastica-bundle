@@ -16,3 +16,5 @@ open_orchestra_elastica_admin:
     form:
         elastica_list:
             search_limit: Results limit
+        elastica_search:
+            node: Node to view results

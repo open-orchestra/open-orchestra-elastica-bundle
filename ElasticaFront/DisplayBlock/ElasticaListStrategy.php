@@ -74,7 +74,6 @@ class ElasticaListStrategy extends AbstractStrategy
                     $qb->filter()->term(array('language' => $request->getLocale()))
                 )
             ));
-
             $searchData = $search->search(null, array('limit' => $block->getAttribute('searchLimit')));
         }
 
