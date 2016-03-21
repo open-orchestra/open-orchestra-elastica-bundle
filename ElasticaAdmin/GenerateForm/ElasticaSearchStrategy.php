@@ -28,7 +28,7 @@ class ElasticaSearchStrategy extends AbstractBlockStrategy
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('contentNodeId', 'oo_node_choice', array(
-            'label' => 'open_orchestra_backoffice.form.content_list.node',
+            'label' => 'open_orchestra_elastica_admin.form.elastica_search.node',
             'constraints' => new NotBlank(),
         ));
     }
