@@ -17,4 +17,4 @@ open_orchestra_elastica_admin:
         elastica_list:
             search_limit: Limite de résultat
         elastica_search:
-            node: Page qui affiche les résultats
+            node: Nœud d'affichage des résultats
