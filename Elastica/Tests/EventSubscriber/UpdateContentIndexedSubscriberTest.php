@@ -50,6 +50,8 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testSubscribedEVents()
     {
         $this->assertArrayHasKey(ContentEvents::CONTENT_CHANGE_STATUS, $this->subscriber->getSubscribedEvents());
+        $this->assertArrayHasKey(ContentEvents::CONTENT_DELETE, $this->subscriber->getSubscribedEvents());
+        $this->assertArrayHasKey(ContentEvents::CONTENT_RESTORE, $this->subscriber->getSubscribedEvents());
     }
 
     /**
@@ -83,5 +85,33 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->subscriber->updateIndexedContent($event);
 
         Phake::verify($this->indexor)->delete($content);
+    }
+
+    /**
+     * Test delete indexed content
+     */
+    public function testDeleteIndexedContent()
+    {
+        $content = Phake::mock(ContentInterface::CLASS);
+        $event = Phake::mock(ContentEvent::CLASS);
+        Phake::when($event)->getContent()->thenReturn($content);
+
+        $this->subscriber->deleteIndexedContent($event);
+
+        Phake::verify($this->indexor)->delete($content);
+    }
+
+    /**
+     * Test restore indexed content
+     */
+    public function testRestoreIndexedContent()
+    {
+        $content = Phake::mock(ContentInterface::CLASS);
+        $event = Phake::mock(ContentEvent::CLASS);
+        Phake::when($event)->getContent()->thenReturn($content);
+
+        $this->subscriber->restoreIndexedContent($event);
+
+        Phake::verify($this->indexor)->index($content);
     }
 }
