@@ -6,7 +6,6 @@ use OpenOrchestra\Backoffice\GenerateForm\GenerateFormInterface;
 use OpenOrchestra\ElasticaAdmin\GenerateForm\ElasticaListStrategy;
 use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Phake;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
