@@ -4,7 +4,6 @@ namespace OpenOrchestra\Elastica\Tests\EventSubscriber;
 
 use OpenOrchestra\Elastica\Indexor\ContentIndexor;
 use OpenOrchestra\ModelInterface\Event\ContentEvent;
-use OpenOrchestra\ModelInterface\Model\StatusInterface;
 use Phake;
 use OpenOrchestra\ModelInterface\ContentEvents;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;

@@ -3,7 +3,6 @@
 namespace OpenOrchestra\Elastica\Tests\Mapper;
 
 use OpenOrchestra\Elastica\Mapper\FieldToElasticaTypeMapper;
-use Phake;
 
 /**
  * Test FieldToElasticaTypeMapperTest
