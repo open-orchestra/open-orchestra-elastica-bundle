@@ -22,7 +22,10 @@
     "psr/log": "1.0.0",
     "codeclimate/php-test-reporter": "dev-master",
     "phpunit/phpunit" : "4.7.2",
-    "phake/phake": "2.1.0"
+    "phake/phake": "2.1.0",
+
+    "open-orchestra/open-orchestra-user-bundle": "1.1.*@dev",
+    "friendsofsymfony/user-bundle": "2.0.*@dev"
   },
   "extra": {
     "branch-alias": {
