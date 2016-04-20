@@ -28,7 +28,8 @@
     "open-orchestra/open-orchestra-libs": "@dev",
     "open-orchestra/open-orchestra-mongo-libs": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
-    "friendsofsymfony/user-bundle": "@dev"
+    "friendsofsymfony/user-bundle": "@dev",
+    "innocead/captcha-bundle": "@dev"
   },
   "extra": {
     "branch-alias": {
