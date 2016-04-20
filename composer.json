@@ -20,6 +20,7 @@
   },
   "require-dev": {
     "open-orchestra/open-orchestra-cms-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-front-bundle": "1.1.*@dev",
     "psr/log": "1.0.0",
     "codeclimate/php-test-reporter": "dev-master",
     "phpunit/phpunit" : "4.7.2",
@@ -27,7 +28,6 @@
 
     "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
     "open-orchestra/open-orchestra-base-api-bundle": "@dev",
-    "open-orchestra/open-orchestra-mongo-libs": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
     "friendsofsymfony/user-bundle": "@dev",
     "innocead/captcha-bundle": "@dev",
