@@ -1,41 +1,57 @@
 {
-    "name": "open-orchestra/open-orchestra-elastica-bundle",
-    "description": "An bundle to index Open Orchestra element",
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "OpenOrchestra community",
-            "homepage": "https://github.com/open-orchestra/open-orchestra-elastica-bundle/graphs/contributors"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "open-orchestra/open-orchestra-model-interface": "*",
-        "ruflin/elastica": "~2.1"
-    },
-    "suggest": {
-        "open-orchestra/open-orchestra-cms-bundle": "To be able to use the admin bundle",
-        "open-orchestra/open-orchestra-front-bundle": "To be able to use the front bundle"
-    },
-    "require-dev": {
-        "open-orchestra/open-orchestra-cms-bundle": "*",
-        "open-orchestra/open-orchestra-front-bundle": "*",
-        "psr/log": "1.0.0",
-        "codeclimate/php-test-reporter": "dev-master",
-        "phpunit/phpunit" : "4.7.2",
-        "phake/phake": "2.1.0"
-    },
-    "config" : {
-        "bin-dir" : "bin"
-    },
-    "autoload": {
-        "psr-4": {
-            "OpenOrchestra\\ElasticaAdminBundle\\": "ElasticaAdminBundle/",
-            "OpenOrchestra\\ElasticaAdmin\\": "ElasticaAdmin/",
-            "OpenOrchestra\\ElasticaFrontBundle\\": "ElasticaFrontBundle/",
-            "OpenOrchestra\\ElasticaFront\\": "ElasticaFront/",
-            "OpenOrchestra\\ElasticaBundle\\": "ElasticaBundle/",
-            "OpenOrchestra\\Elastica\\": "Elastica/"
-        }
+  "name": "open-orchestra/open-orchestra-elastica-bundle",
+  "description": "An bundle to index Open Orchestra element",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "OpenOrchestra community",
+      "homepage": "https://github.com/open-orchestra/open-orchestra-elastica-bundle/graphs/contributors"
     }
+  ],
+  "require": {
+    "open-orchestra/open-orchestra-model-interface": "1.1.*@dev",
+    "ruflin/elastica": "~2.1",
+
+    "open-orchestra/open-orchestra-libs": "@dev"
+  },
+  "suggest": {
+    "open-orchestra/open-orchestra-cms-bundle": "To be able to use the admin bundle",
+    "open-orchestra/open-orchestra-front-bundle": "To be able to use the front bundle"
+  },
+  "require-dev": {
+    "open-orchestra/open-orchestra-cms-bundle": "1.1.*@dev",
+    "psr/log": "1.0.0",
+    "codeclimate/php-test-reporter": "dev-master",
+    "phpunit/phpunit" : "4.7.2",
+    "phake/phake": "2.1.0",
+
+    "open-orchestra/open-orchestra-display-bundle": "@dev",
+    "open-orchestra/open-orchestra-base-bundle": "@dev",
+    "open-orchestra/open-orchestra-base-api-bundle": "@dev",
+    "open-orchestra/open-orchestra-user-bundle": "@dev",
+    "open-orchestra/open-orchestra-model-interface": "@dev",
+    "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
+    "open-orchestra/open-orchestra-theme-bundle": "@dev",
+    "friendsofsymfony/user-bundle": "@dev",
+    "solution/pipeline-builder": "@dev",
+    "innocead/captcha-bundle": "@dev"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.1.x-dev"
+    }
+  },
+  "config" : {
+    "bin-dir" : "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenOrchestra\\ElasticaAdminBundle\\": "ElasticaAdminBundle/",
+      "OpenOrchestra\\ElasticaAdmin\\": "ElasticaAdmin/",
+      "OpenOrchestra\\ElasticaFrontBundle\\": "ElasticaFrontBundle/",
+      "OpenOrchestra\\ElasticaFront\\": "ElasticaFront/",
+      "OpenOrchestra\\ElasticaBundle\\": "ElasticaBundle/",
+      "OpenOrchestra\\Elastica\\": "Elastica/"
+    }
+  }
 }
