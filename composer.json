@@ -28,10 +28,11 @@
     "open-orchestra/open-orchestra-display-bundle": "@dev",
     "open-orchestra/open-orchestra-base-bundle": "@dev",
     "open-orchestra/open-orchestra-base-api-bundle": "@dev",
-    "open-orchestra/open-orchestra-display-bundle": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
     "open-orchestra/open-orchestra-model-interface": "@dev",
-    "friendsofsymfony/user-bundle": "@dev"
+    "friendsofsymfony/user-bundle": "@dev",
+    "solution/pipeline-builder": "@dev",
+    "innocead/captcha-bundle": "@dev"
   },
   "extra": {
     "branch-alias": {
