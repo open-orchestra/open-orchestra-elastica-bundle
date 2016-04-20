@@ -29,7 +29,8 @@
     "open-orchestra/open-orchestra-base-api-bundle": "@dev",
     "open-orchestra/open-orchestra-display-bundle": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
-    "open-orchestra/open-orchestra-model-interface": "@dev"
+    "open-orchestra/open-orchestra-model-interface": "@dev",
+    "friendsofsymfony/user-bundle": "@dev"
   },
   "extra": {
     "branch-alias": {
