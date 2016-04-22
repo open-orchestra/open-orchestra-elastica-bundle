@@ -1,6 +1,6 @@
 {
   "name": "open-orchestra/open-orchestra-elastica-bundle",
-  "description": "An bundle to index Open Orchestra element",
+  "description": "A bundle to index Open Orchestra elements with Elastica Search",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -33,7 +33,6 @@
     "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
     "open-orchestra/open-orchestra-theme-bundle": "@dev",
     "friendsofsymfony/user-bundle": "@dev",
-    "solution/pipeline-builder": "@dev",
     "innocead/captcha-bundle": "@dev"
   },
   "extra": {
