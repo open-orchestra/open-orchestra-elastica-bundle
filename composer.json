@@ -25,6 +25,7 @@
     "phpunit/phpunit" : "4.7.2",
     "phake/phake": "2.1.0",
 
+    "open-orchestra/open-orchestra-mongo-libs": "@dev",
     "open-orchestra/open-orchestra-display-bundle": "@dev",
     "open-orchestra/open-orchestra-base-bundle": "@dev",
     "open-orchestra/open-orchestra-base-api-bundle": "@dev",
