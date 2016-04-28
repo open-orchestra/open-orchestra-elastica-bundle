@@ -9,21 +9,36 @@
     }
   ],
   "require": {
-    "open-orchestra/open-orchestra-model-interface": "~1.1.0",
-    "ruflin/elastica": "~2.1"
+    "open-orchestra/open-orchestra-model-interface": "1.1.*@dev",
+    "ruflin/elastica": "~2.1",
+
+    "open-orchestra/open-orchestra-libs": "@dev"
   },
   "suggest": {
     "open-orchestra/open-orchestra-cms-bundle": "To be able to use the admin bundle",
     "open-orchestra/open-orchestra-front-bundle": "To be able to use the front bundle"
   },
   "require-dev": {
-    "open-orchestra/open-orchestra-cms-bundle": "~1.1.0",
+    "open-orchestra/open-orchestra-cms-bundle": "1.1.*@dev",
     "psr/log": "1.0.0",
     "codeclimate/php-test-reporter": "dev-master",
     "phpunit/phpunit" : "4.7.2",
     "phake/phake": "2.1.0",
     "innocead/captcha-bundle": "@dev",
-    "friendsofsymfony/user-bundle": "@dev"
+    "friendsofsymfony/user-bundle": "@dev",
+
+    "open-orchestra/open-orchestra-base-api-bundle": "@dev",
+    "open-orchestra/open-orchestra-base-bundle": "@dev",
+    "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
+    "open-orchestra/open-orchestra-display-bundle": "@dev",
+    "open-orchestra/open-orchestra-model-bundle": "@dev",
+    "open-orchestra/open-orchestra-mongo-libs": "@dev",
+    "open-orchestra/open-orchestra-user-bundle": "@dev"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.1.x-dev"
+    }
   },
   "config" : {
     "bin-dir" : "bin"
