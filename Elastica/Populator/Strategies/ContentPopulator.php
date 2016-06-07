@@ -33,7 +33,7 @@ class ContentPopulator implements ElasticaPopulatorInterface
     public function populate()
     {
         foreach ($this->languages as $language => $key) {
-            $contents = $this->contentRepository->findByContentTypeAndKeywords($language);
+            $contents = $this->contentRepository->findByContentTypeAndCondition($language);
 
             $this->multipleIndexor->indexMultiple($contents);
         }

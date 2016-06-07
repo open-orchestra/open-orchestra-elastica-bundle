@@ -49,15 +49,15 @@ class ContentPopulatorTest extends \PHPUnit_Framework_TestCase
     {
         $content = Phake::mock(ContentInterface::CLASS);
 
-        Phake::when($this->contentRepository)->findByContentTypeAndKeywords(Phake::anyParameters())->thenReturn(array(
+        Phake::when($this->contentRepository)->findByContentTypeAndCondition(Phake::anyParameters())->thenReturn(array(
             $content,
             $content,
         ));
 
         $this->populator->populate();
 
-        Phake::verify($this->contentRepository)->findByContentTypeAndKeywords('en');
-        Phake::verify($this->contentRepository)->findByContentTypeAndKeywords('fr');
+        Phake::verify($this->contentRepository)->findByContentTypeAndCondition('en');
+        Phake::verify($this->contentRepository)->findByContentTypeAndCondition('fr');
         Phake::verify($this->multipleIndexor, Phake::times(2))->indexMultiple(array($content, $content));
     }
 }
