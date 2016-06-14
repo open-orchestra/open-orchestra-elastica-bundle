@@ -72,7 +72,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
         if ('' != $block->getAttribute('contentNodeId')) {
             $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
             $siteId = $this->currentSiteManager->getCurrentSiteId();
-            $nodeId = $this->nodeRepository->findPublishedInLastVersion($block->getAttribute('contentNodeId'), $language, $siteId)->getId();
+            $nodeId = $this->nodeRepository->findOneCurrentlyPublished($block->getAttribute('contentNodeId'), $language, $siteId)->getId();
             $formParameters['action'] = $this->router->generate($nodeId);
         }
 
