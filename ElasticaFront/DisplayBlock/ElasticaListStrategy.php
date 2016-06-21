@@ -59,7 +59,7 @@ class ElasticaListStrategy extends AbstractStrategy
 
         $data = $request->get('elastica_search');
         $searchData = array();
-        if (is_array($data) && array_key_exists('search', $data) && null != $data['search']) {
+        if (is_array($data) && array_key_exists('search', $data) && null !== $data['search']) {
             $searchParameter = $data['search'];
 
             $index = $this->client->getIndex($this->indexName);
@@ -85,7 +85,7 @@ class ElasticaListStrategy extends AbstractStrategy
     /**
      * @param ReadBlockInterface $block
      *
-     * @return Array
+     * @return array
      */
     public function getCacheTags(ReadBlockInterface $block)
     {
