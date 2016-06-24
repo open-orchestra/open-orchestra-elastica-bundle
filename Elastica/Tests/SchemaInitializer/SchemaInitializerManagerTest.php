@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\Elastica\Tests\SchemaInitializer;
 
-use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializer;
+use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializerInterface;
 use OpenOrchestra\Elastica\SchemaInitializer\SchemaInitializerManager;
 use Phake;
 
@@ -37,7 +37,7 @@ class SchemaInitializerManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testInitialize()
     {
-        $initializer = Phake::mock(ElasticaSchemaInitializer::CLASS);
+        $initializer = Phake::mock(ElasticaSchemaInitializerInterface::CLASS);
         $this->manager->addInitializer($initializer);
         $this->manager->addInitializer($initializer);
 

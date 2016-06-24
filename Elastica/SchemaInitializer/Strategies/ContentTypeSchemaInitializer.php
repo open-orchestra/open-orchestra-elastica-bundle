@@ -3,13 +3,13 @@
 namespace OpenOrchestra\Elastica\SchemaInitializer\Strategies;
 
 use OpenOrchestra\Elastica\SchemaGenerator\DocumentToElasticaSchemaGeneratorInterface;
-use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializer;
+use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializerInterface;
 use OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface;
 
 /**
  * Class ContentTypeSchemaInitializer
  */
-class ContentTypeSchemaInitializer implements ElasticaSchemaInitializer
+class ContentTypeSchemaInitializer implements ElasticaSchemaInitializerInterface
 {
     protected $contentTypeRepository;
     protected $schemaGenerator;

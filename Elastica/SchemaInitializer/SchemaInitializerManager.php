@@ -5,14 +5,14 @@ namespace OpenOrchestra\Elastica\SchemaInitializer;
 /**
  * Class SchemaInitializerManager
  */
-class SchemaInitializerManager implements ElasticaSchemaInitializer
+class SchemaInitializerManager implements ElasticaSchemaInitializerInterface
 {
     protected $initializers = array();
 
     /**
-     * @param ElasticaSchemaInitializer $initializer
+     * @param ElasticaSchemaInitializerInterface $initializer
      */
-    public function addInitializer(ElasticaSchemaInitializer $initializer)
+    public function addInitializer(ElasticaSchemaInitializerInterface $initializer)
     {
         $this->initializers[] = $initializer;
     }
@@ -22,7 +22,7 @@ class SchemaInitializerManager implements ElasticaSchemaInitializer
      */
     public function initialize()
     {
-        /** @var ElasticaSchemaInitializer $initializer */
+        /** @var ElasticaSchemaInitializerInterface $initializer */
         foreach ($this->initializers as $initializer) {
             $initializer->initialize();
         }

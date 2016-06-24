@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Elastica\Tests\SchemaInitializer\Strategies;
 
 use OpenOrchestra\Elastica\SchemaGenerator\DocumentToElasticaSchemaGeneratorInterface;
-use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializer;
+use OpenOrchestra\Elastica\SchemaInitializer\ElasticaSchemaInitializerInterface;
 use OpenOrchestra\Elastica\SchemaInitializer\Strategies\ContentTypeSchemaInitializer;
 use OpenOrchestra\ModelInterface\Model\ContentTypeInterface;
 use OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface;
@@ -38,7 +38,7 @@ class ContentTypeSchemaInitializerTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstance()
     {
-        $this->assertInstanceOf(ElasticaSchemaInitializer::CLASS, $this->initializer);
+        $this->assertInstanceOf(ElasticaSchemaInitializerInterface::CLASS, $this->initializer);
     }
 
     /**
