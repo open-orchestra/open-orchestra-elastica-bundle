@@ -12,9 +12,7 @@
   "require": {
     "php": "~5.6.0",
     "ruflin/elastica": "~2.3.1",
-    "open-orchestra/open-orchestra-model-interface": "1.2.*@dev",
-
-    "open-orchestra/open-orchestra-libs": "@dev"
+    "open-orchestra/open-orchestra-model-interface": "self.version"
   },
 
   "require-dev": {
@@ -24,26 +22,21 @@
 
     "friendsofsymfony/user-bundle": "2.0.x-dev",
     "innocead/captcha-bundle": "dev-master",
-    "open-orchestra/open-orchestra-cms-bundle": "1.2.*@dev",
+    "open-orchestra/open-orchestra-cms-bundle": "self.version",
 
-    "open-orchestra/open-orchestra-base-api-bundle": "@dev",
-    "open-orchestra/open-orchestra-base-bundle": "@dev",
-    "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
-    "open-orchestra/open-orchestra-display-bundle": "@dev",
-    "open-orchestra/open-orchestra-model-bundle": "@dev",
-    "open-orchestra/open-orchestra-mongo-libs": "@dev",
-    "open-orchestra/open-orchestra-user-bundle": "@dev"
+    "open-orchestra/open-orchestra-base-api-bundle": "self.version",
+    "open-orchestra/open-orchestra-base-bundle": "self.version",
+    "open-orchestra/open-orchestra-bbcode-bundle": "self.version",
+    "open-orchestra/open-orchestra-display-bundle": "self.version",
+    "open-orchestra/open-orchestra-model-bundle": "self.version",
+    "open-orchestra/open-orchestra-mongo-libs": "self.version",
+    "open-orchestra/open-orchestra-user-bundle": "self.version",
+    "open-orchestra/open-orchestra-libs": "self.version"
   },
 
   "suggest": {
     "open-orchestra/open-orchestra-cms-bundle": "To be able to use the admin bundle",
     "open-orchestra/open-orchestra-front-bundle": "To be able to use the front bundle"
-  },
-
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.2.x-dev"
-    }
   },
 
   "config": {
