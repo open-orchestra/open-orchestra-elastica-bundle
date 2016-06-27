@@ -3,6 +3,6 @@ parameters:
 
 services:
     open_orchestra_elastica_admin.block_parameter.search:
-        class: %open_orchestra_elastica_admin.block_parameter.search.class%
+        class: '%open_orchestra_elastica_admin.block_parameter.search.class%'
         tags:
             - { name: open_orchestra_backoffice.block_parameter.strategy }

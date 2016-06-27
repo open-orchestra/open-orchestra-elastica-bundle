@@ -3,4 +3,4 @@ parameters:
 
 services:
     open_orchestra_elastica.transformer.content:
-        class: %open_orchestra_elastica.transformer.content.class%
+        class: '%open_orchestra_elastica.transformer.content.class%'

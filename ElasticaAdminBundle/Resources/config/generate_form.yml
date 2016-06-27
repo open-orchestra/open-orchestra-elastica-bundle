@@ -4,10 +4,10 @@ parameters:
 
 services:
     open_orchestra_elastica_admin.generate_form.search:
-        class: %open_orchestra_elastica_admin.generate_form.search.class%
+        class: '%open_orchestra_elastica_admin.generate_form.search.class%'
         tags:
             - { name: open_orchestra_backoffice.generate_form.strategy }
     open_orchestra_elastica_admin.generate_form.list:
-        class: %open_orchestra_elastica_admin.generate_form.list.class%
+        class: '%open_orchestra_elastica_admin.generate_form.list.class%'
         tags:
             - { name: open_orchestra_backoffice.generate_form.strategy }

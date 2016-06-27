@@ -4,12 +4,12 @@ parameters:
 
 services:
     open_orchestra_elastica.schema_initializer.manager:
-        class: %open_orchestra_elastica.schema_initializer.manager.class%
+        class: '%open_orchestra_elastica.schema_initializer.manager.class%'
 
     open_orchestra_elastica.schema_initializer.content_type:
-        class: %open_orchestra_elastica.schema_initializer.content_type.class%
+        class: '%open_orchestra_elastica.schema_initializer.content_type.class%'
         arguments:
-            - @open_orchestra_model.repository.content_type
-            - @open_orchestra_elastica.schema_generator.content_type
+            - '@open_orchestra_model.repository.content_type'
+            - '@open_orchestra_elastica.schema_generator.content_type'
         tags:
             - { name: open_orchestra_elastica.schema_initializer.strategy }

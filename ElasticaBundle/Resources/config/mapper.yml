@@ -3,4 +3,4 @@ parameters:
 
 services:
     open_orchestra_elastica.mapper.form:
-        class: %open_orchestra_elastica.mapper.form.class%
+        class: '%open_orchestra_elastica.mapper.form.class%'
