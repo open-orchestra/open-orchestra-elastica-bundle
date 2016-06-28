@@ -21,7 +21,6 @@
     "codeclimate/php-test-reporter": "~0.3.2",
 
     "friendsofsymfony/user-bundle": "2.0.x-dev",
-    "innocead/captcha-bundle": "dev-master",
     "open-orchestra/open-orchestra-cms-bundle": "self.version",
 
     "open-orchestra/open-orchestra-base-api-bundle": "self.version",
