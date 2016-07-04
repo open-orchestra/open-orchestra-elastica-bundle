@@ -4,10 +4,10 @@ parameters:
 
 services:
     open_orchestra_elastica_admin.display_block.search:
-        class: %open_orchestra_elastica_admin.display_block.search.class%
+        class: '%open_orchestra_elastica_admin.display_block.search.class%'
         tags:
             - { name: open_orchestra_backoffice.display_block.strategy }
     open_orchestra_elastica_admin.display_block.list:
-        class: %open_orchestra_elastica_admin.display_block.list.class%
+        class: '%open_orchestra_elastica_admin.display_block.list.class%'
         tags:
             - { name: open_orchestra_backoffice.display_block.strategy }

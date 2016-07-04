@@ -3,20 +3,20 @@ parameters:
     open_orchestra_elastica_front.display_block.elastica_list.class: OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaListStrategy
 services:
     open_orchestra_elastica_front.display_block.elastica_search:
-        class: %open_orchestra_elastica_front.display_block.elastica_search.class%
+        class: '%open_orchestra_elastica_front.display_block.elastica_search.class%'
         arguments:
-            - @form.factory
-            - @request_stack
-            - @router
-            - @open_orchestra_model.repository.node
-            - @open_orchestra_display.manager.site
+            - '@form.factory'
+            - '@request_stack'
+            - '@router'
+            - '@open_orchestra_model.repository.node'
+            - '@open_orchestra_display.manager.site'
         tags:
             - { name: open_orchestra_display.display_block.strategy }
     open_orchestra_elastica_front.display_block.elastica_list:
-        class: %open_orchestra_elastica_front.display_block.elastica_list.class%
+        class: '%open_orchestra_elastica_front.display_block.elastica_list.class%'
         arguments:
-            - @request_stack
-            - @open_orchestra_elastica.client.elastica
-            - %open_orchestra_elastica.index.name%
+            - '@request_stack'
+            - '@open_orchestra_elastica.client.elastica'
+            - '%open_orchestra_elastica.index.name%'
         tags:
             - { name: open_orchestra_display.display_block.strategy }

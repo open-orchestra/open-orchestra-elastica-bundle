@@ -3,4 +3,4 @@ parameters:
 
 services:
     open_orchestra_elastica.factory.mapping:
-        class: %open_orchestra_elastica.factory.mapping.class%
+        class: '%open_orchestra_elastica.factory.mapping.class%'
