@@ -20,8 +20,6 @@
     "phpunit/phpunit": "~5.4.0",
     "phake/phake": "~2.3.0",
     "codeclimate/php-test-reporter": "~0.3.2",
-
-    "friendsofsymfony/user-bundle": "2.0.x-dev",
     "open-orchestra/open-orchestra-cms-bundle": "self.version",
 
     "open-orchestra/open-orchestra-base-api-bundle": "self.version",
