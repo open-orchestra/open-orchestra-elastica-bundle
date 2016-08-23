@@ -68,7 +68,4 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
 
         return $blocksData;
     }
-
-
-
 }
