@@ -49,7 +49,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->client = Phake::mock(Client::CLASS);
         Phake::when($this->client)->getIndex(Phake::anyParameters())->thenReturn($this->index);
 
-        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper, 'content', $this->mappingFactory);
+        $this->schemaGenerator = new ContentTypeSchemaGenerator($this->client, $this->formMapper, 'orchestra', $this->mappingFactory);
     }
 
     /**
@@ -87,7 +87,7 @@ class ContentTypeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $this->schemaGenerator->createMapping($contentType);
 
-        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->client)->getIndex('orchestra');
         Phake::verify($this->index)->getType('content_contentTypeId');
         Phake::verify($mapping)->setProperties(array(
             'id' => array('type' => 'string', 'include_in_all' => true),

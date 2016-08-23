@@ -10,7 +10,7 @@ interface DocumentToElasticaSchemaGeneratorInterface
     /**
      * Create a elasticSearch linked to the object
      *
-     * @param mixed $object
+     * @param mixed $document
      */
-    public function createMapping($object);
+    public function createMapping($document);
 }

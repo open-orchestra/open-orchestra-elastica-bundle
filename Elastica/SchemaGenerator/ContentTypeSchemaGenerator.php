@@ -35,7 +35,7 @@ class ContentTypeSchemaGenerator implements DocumentToElasticaSchemaGeneratorInt
     /**
      * Create a elasticSearch linked to the object
      *
-     * @param ContentTypeInterface $contentType
+     * @param null|ContentTypeInterface $contentType
      */
     public function createMapping($contentType)
     {
