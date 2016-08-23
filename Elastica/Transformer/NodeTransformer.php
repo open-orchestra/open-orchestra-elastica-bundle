@@ -4,10 +4,8 @@ namespace OpenOrchestra\Elastica\Transformer;
 
 use Elastica\Document;
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockManager;
-use OpenOrchestra\ModelInterface\Model\ReadAreaInterface;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
-use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
 
 /**
  * Class NodeTransformer
@@ -15,16 +13,13 @@ use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
 class NodeTransformer implements ModelToElasticaTransformerInterface
 {
     protected $displayBlockManager;
-    protected $nodeRepository;
 
     /**
-     * @param DisplayBlockManager         $displayBlockManager
-     * @param ReadNodeRepositoryInterface $nodeRepository
+     * @param DisplayBlockManager $displayBlockManager
      */
-    public function __construct(DisplayBlockManager $displayBlockManager, ReadNodeRepositoryInterface $nodeRepository)
+    public function __construct(DisplayBlockManager $displayBlockManager)
     {
         $this->displayBlockManager = $displayBlockManager;
-        $this->nodeRepository = $nodeRepository;
     }
 
     /**
@@ -52,7 +47,6 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
         return $document;
     }
 
-
     /**
      * @param ReadNodeInterface $node
      *
@@ -61,9 +55,8 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
     protected function transformBlock(ReadNodeInterface $node)
     {
         $blocksData = array();
-        $blocks = array_merge($this->getTransverseBlock($node->getRootArea(), $node), $node->getBlocks()->toArray());
         /** @var ReadBlockInterface $block */
-        foreach ($blocks as $block) {
+        foreach ($node->getBlocks() as $block) {
             $contentBlock = $this->displayBlockManager->toString($block);
             if (null !== $contentBlock) {
                 $blocksData[] = array(
@@ -76,35 +69,6 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
         return $blocksData;
     }
 
-    /**
-     * @param ReadAreaInterface $area
-     * @param ReadNodeInterface $node
-     * @return array
-     */
-    protected function getTransverseBlock(ReadAreaInterface $area, ReadNodeInterface $node)
-    {
-        $blocks = array();
-        $nodeTransverse = null;
-        /** @var ReadAreaInterface $subArea */
-        foreach ($area->getAreas() as $subArea) {
-            /** @var ReadBlockInterface $block */
-            foreach ($subArea->getBlocks() as $block) {
-                if (isset($block['nodeId']) &&
-                    isset($block['blockId']) &&
-                    0 !== $block['nodeId']
-                ) {
-                    if (null === $nodeTransverse) {
-                        $nodeTransverse = $this->nodeRepository->findOneCurrentlyPublished($block['nodeId'], $node->getLanguage(), $node->getSiteId());
-                    }
-                    $blocks[] = $nodeTransverse->getBlocks()->get($block['blockId']);
-                }
-            }
-            if (count($subArea->getAreas()) > 0) {
-                $blocks = array_merge($this->getTransverseBlock($subArea, $node), $blocks);
-            }
-        }
 
-        return $blocks;
-    }
 
 }

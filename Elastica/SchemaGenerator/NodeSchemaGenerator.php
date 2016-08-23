@@ -34,14 +34,6 @@ class NodeSchemaGenerator implements ElasticaSchemaGeneratorInterface
     public function createMapping()
     {
         $index = $this->client->getIndex($this->indexName);
-/*        $typecontent = $index->getType('content_type');
-
-
-        $mappingContent = $this->mappingFactory->create($typecontent);
-        $mappingContent->setParent('content_car');
-
-        $mappingContent->send();*/
-
         $type = $index->getType(self::INDEX_TYPE);
 
         $mappingProperties = array(

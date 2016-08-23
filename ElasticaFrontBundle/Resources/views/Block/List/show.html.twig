@@ -2,9 +2,13 @@
 
 {% block content %}
     {% for data in searchData %}
-        {% for key, value in data.data %}
-            <b>{{ key }}</b> => {{ value }}<br/>
-        {% endfor %}
+        {% if (data.type == 'node') %}
+            <p><b> Node </b> : <a href="{{ url(data.elementId) }}">{{ data.name }}</a></p>
+        {% else %}
+            {% for key, value in data.data %}
+                <b>{{ key }}</b> => {{ value }}<br/>
+            {% endfor %}
+        {% endif %}
         <br/>
     {% endfor %}
 {% endblock %}

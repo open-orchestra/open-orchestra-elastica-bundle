@@ -71,6 +71,10 @@ class NodeSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
             'language' => array('type' => 'string', 'include_in_all' => true),
             'name' => array('type' => 'string', 'include_in_all' => true),
             'updatedAt' => array('type' => 'long', 'include_in_all' => false),
+            'blocks' => array('properties' => array(
+                'content' => array('type' => 'string',  'store' => true),
+                'type' => array('type' => 'string', 'store' => true)
+            )),
         ));
 
     }
