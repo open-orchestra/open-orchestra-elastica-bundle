@@ -32,13 +32,14 @@ class ElasticaListStrategy extends AbstractBlockStrategy
     }
 
     /**
-     * Get the default configuration for the block
-     *
      * @return array
      */
     public function getDefaultConfiguration()
     {
-        return array('searchLimit' => 10);
+        return array(
+            'maxAge' => 0,
+            'searchLimit' => 10
+        );
     }
 
     /**

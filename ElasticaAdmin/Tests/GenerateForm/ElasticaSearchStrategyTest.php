@@ -24,7 +24,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->strategy = new ElasticaSearchStrategy();
+        $this->strategy = new ElasticaSearchStrategy(array());
     }
 
     /**

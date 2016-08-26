@@ -23,7 +23,7 @@ class ElasticaListStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->strategy = new ElasticaListStrategy();
+        $this->strategy = new ElasticaListStrategy(array());
     }
 
     /**
@@ -74,7 +74,7 @@ class ElasticaListStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDefaultConfiguration()
     {
-        $this->assertSame(array('searchLimit' => 10), $this->strategy->getDefaultConfiguration());
+        $this->assertSame(array('maxAge' => 0, 'searchLimit' => 10), $this->strategy->getDefaultConfiguration());
     }
 
     /**
