@@ -49,12 +49,11 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
 
         $block = Phake::mock(ReadBlockInterface::class);
         Phake::when($block)->getComponent()->thenReturn('fake_component');
+        Phake::when($block)->getAttribute('searchable')->thenReturn(true);
 
-        $rootArea = Phake::mock(ReadAreaInterface::class);
-        $areaBlock = Phake::mock(ReadAreaInterface::class);
-        Phake::when($areaBlock)->getBlocks()->thenReturn(array(array('nodeId' => 0, 'blockId' => '0')));
-
-        Phake::when($rootArea)->getAreas()->thenReturn(new ArrayCollection(array($areaBlock)));
+        $block2 = Phake::mock(ReadBlockInterface::class);
+        Phake::when($block2)->getComponent()->thenReturn('fake_component');
+        Phake::when($block2)->getAttribute('searchable')->thenReturn(false);
 
         Phake::when($this->displayBlockManager)->toString(Phake::anyParameters())->thenReturn('fakeToString');
 
@@ -65,8 +64,7 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($node)->getSiteId()->thenReturn('siteId');
         Phake::when($node)->getLanguage()->thenReturn('language');
         Phake::when($node)->getUpdatedAt()->thenReturn($date);
-        Phake::when($node)->getRootArea()->thenReturn($rootArea);
-        Phake::when($node)->getBlocks()->thenReturn(new ArrayCollection(array($block)));
+        Phake::when($node)->getBlocks()->thenReturn(new ArrayCollection(array($block, $block2)));
 
         $document = $this->transformer->transform($node);
 

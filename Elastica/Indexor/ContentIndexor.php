@@ -5,6 +5,7 @@ namespace OpenOrchestra\Elastica\Indexor;
 use Elastica\Exception\NotFoundException;
 use Elastica\Index;
 use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
+use OpenOrchestra\Elastica\SchemaGenerator\ContentTypeSchemaGenerator;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;
 
 /**
@@ -18,7 +19,7 @@ class ContentIndexor extends AbstractDocumentIndexor
      */
     protected function indexDocument($content, Index $index)
     {
-        $type = $index->getType('content_' . $content->getContentType());
+        $type = $index->getType(ContentTypeSchemaGenerator::INDEX_TYPE . $content->getContentType());
         $document = $this->transformer->transform($content);
         $type->addDocument($document);
     }
@@ -35,7 +36,7 @@ class ContentIndexor extends AbstractDocumentIndexor
         }
 
         $index = $this->client->getIndex($this->indexName);
-        $type = $index->getType('content_' . $content->getContentType());
+        $type = $index->getType(ContentTypeSchemaGenerator::INDEX_TYPE . $content->getContentType());
         $document = $this->transformer->transform($content);
         try {
             $type->deleteDocument($document);

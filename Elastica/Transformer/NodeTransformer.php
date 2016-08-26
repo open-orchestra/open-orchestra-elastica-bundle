@@ -57,12 +57,15 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
         $blocksData = array();
         /** @var ReadBlockInterface $block */
         foreach ($node->getBlocks() as $block) {
-            $contentBlock = $this->displayBlockManager->toString($block);
-            if (null !== $contentBlock) {
-                $blocksData[] = array(
-                    'type' => $block->getComponent(),
-                    'content' => $contentBlock,
-                );
+            $searchable = $block->getAttribute('searchable');
+            if (true === $searchable) {
+                $contentBlock = $this->displayBlockManager->toString($block);
+                if ('' !== $contentBlock) {
+                    $blocksData[] = array(
+                        'type' => $block->getComponent(),
+                        'content' => $contentBlock,
+                    );
+                }
             }
         }
 
