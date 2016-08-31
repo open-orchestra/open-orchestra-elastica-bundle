@@ -31,7 +31,7 @@ class NodePopulator implements ElasticaPopulatorInterface
     public function populate()
     {
         $skip = 0;
-        $limit = 1;
+        $limit = 20;
         while (!empty($nodes = $this->nodeRepository->findAllCurrentlyPublishedByTypeWithSkipAndLimit(NodeInterface::TYPE_DEFAULT, $skip, $limit)))  {
             $skip += $limit;
             $this->multipleIndexor->indexMultiple($nodes);
