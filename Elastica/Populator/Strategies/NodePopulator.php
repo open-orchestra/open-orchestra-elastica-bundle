@@ -30,10 +30,10 @@ class NodePopulator implements ElasticaPopulatorInterface
      */
     public function populate()
     {
-        $skip = 0;
         $limit = 20;
-        while (!empty($nodes = $this->nodeRepository->findAllCurrentlyPublishedByTypeWithSkipAndLimit(NodeInterface::TYPE_DEFAULT, $skip, $limit)))  {
-            $skip += $limit;
+        $countNodes = $this->nodeRepository->countAllCurrentlyPublishedByType(NodeInterface::TYPE_DEFAULT);
+        for ($skip = 0; $skip < $countNodes; $skip+=$limit) {
+            $nodes = $this->nodeRepository->findAllCurrentlyPublishedByTypeWithSkipAndLimit(NodeInterface::TYPE_DEFAULT, $skip, $limit);
             $this->multipleIndexor->indexMultiple($nodes);
         }
     }

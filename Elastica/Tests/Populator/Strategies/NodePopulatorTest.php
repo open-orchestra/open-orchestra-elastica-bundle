@@ -52,7 +52,10 @@ class NodePopulatorTest extends \PHPUnit_Framework_TestCase
             $node,
             $node,
         ));
+        Phake::when($this->nodeRepository)->countAllCurrentlyPublishedByType(Phake::anyParameters())->thenReturn(2);
+
         $this->populator->populate();
+
         Phake::verify($this->multipleIndexor)->indexMultiple(array($node, $node));
     }
 }
