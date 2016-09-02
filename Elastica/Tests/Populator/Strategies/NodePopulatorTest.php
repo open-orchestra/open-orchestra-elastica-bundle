@@ -48,7 +48,7 @@ class NodePopulatorTest extends \PHPUnit_Framework_TestCase
     {
         $node = Phake::mock(ReadNodeInterface::CLASS);
 
-        Phake::when($this->nodeRepository)->findAllCurrentlyPublishedByType(Phake::anyParameters())->thenReturn(array(
+        Phake::when($this->nodeRepository)->findAllCurrentlyPublishedByTypeWithSkipAndLimit(Phake::anyParameters())->thenReturn(array(
             $node,
             $node,
         ));
