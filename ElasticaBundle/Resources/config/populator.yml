@@ -1,6 +1,7 @@
 parameters:
     open_orchestra_elastica.populator.manager.class: OpenOrchestra\Elastica\Populator\ElasticaPopulatorManager
     open_orchestra_elastica.populator.content.class: OpenOrchestra\Elastica\Populator\Strategies\ContentPopulator
+    open_orchestra_elastica.populator.node.class: OpenOrchestra\Elastica\Populator\Strategies\NodePopulator
 
 services:
     open_orchestra_elastica.populator.manager:
@@ -12,5 +13,13 @@ services:
             - '@open_orchestra_elastica.indexor.content'
             - '@open_orchestra_model.repository.content'
             - '%open_orchestra_elastica.orchestra_choice.front_language%'
+        tags:
+            - { name: open_orchestra_elastica.populator.strategy}
+
+    open_orchestra_elastica.populator.node:
+        class: '%open_orchestra_elastica.populator.node.class%'
+        arguments:
+            - '@open_orchestra_elastica.indexor.node'
+            - '@open_orchestra_model.repository.node'
         tags:
             - { name: open_orchestra_elastica.populator.strategy}

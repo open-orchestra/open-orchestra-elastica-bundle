@@ -44,7 +44,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
         $this->client = Phake::mock(Client::CLASS);
         Phake::when($this->client)->getIndex(Phake::anyParameters())->thenReturn($this->index);
 
-        $this->indexor = new ContentIndexor($this->client, $this->transformer, 'content');
+        $this->indexor = new ContentIndexor($this->client, $this->transformer, 'orchestra');
     }
 
     /**
@@ -71,7 +71,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
 
         $this->indexor->index($content);
 
-        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->client)->getIndex('orchestra');
         Phake::verify($this->index)->getType('content_' . $contentType);
         Phake::verify($this->type)->addDocument($document);
         Phake::verify($this->index)->refresh();
@@ -102,7 +102,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
 
         $this->indexor->indexMultiple(array($content, $content));
 
-        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->client)->getIndex('orchestra');
         Phake::verify($this->index, Phake::times(2))->getType('content_' . $contentType);
         Phake::verify($this->type, Phake::times(2))->addDocument($document);
         Phake::verify($this->index)->refresh();
@@ -122,7 +122,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
 
         $this->indexor->delete($content);
 
-        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->client)->getIndex('orchestra');
         Phake::verify($this->index)->getType('content_' . $contentType);
         Phake::verify($this->type)->deleteDocument($document);
         Phake::verify($this->index)->refresh();
@@ -145,7 +145,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
 
         $this->indexor->delete($content);
 
-        Phake::verify($this->client)->getIndex('content');
+        Phake::verify($this->client)->getIndex('orchestra');
         Phake::verify($this->index)->getType('content_' . $contentType);
         Phake::verify($this->type)->deleteDocument($document);
         Phake::verify($this->index, Phake::never())->refresh();
@@ -156,7 +156,7 @@ class ContentIndexorTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteWithWrongObjectType()
     {
-        $this->setExpectedException(IndexorWrongParameterException::CLASS);
+        $this->expectException(IndexorWrongParameterException::CLASS);
 
         $this->indexor->delete(Phake::mock('stdClass'));
     }
