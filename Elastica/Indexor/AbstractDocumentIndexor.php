@@ -5,7 +5,6 @@ namespace OpenOrchestra\Elastica\Indexor;
 use Elastica\Client;
 use Elastica\Index;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
-use OpenOrchestra\ModelInterface\Model\ContentInterface;
 
 /**
  * Class AbstractDocumentIndexor

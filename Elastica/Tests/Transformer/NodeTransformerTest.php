@@ -7,7 +7,6 @@ use Elastica\Document;
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockManager;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
 use OpenOrchestra\Elastica\Transformer\NodeTransformer;
-use OpenOrchestra\ModelInterface\Model\ReadAreaInterface;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
 use Phake;
