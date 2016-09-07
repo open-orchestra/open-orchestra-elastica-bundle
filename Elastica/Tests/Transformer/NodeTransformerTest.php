@@ -75,7 +75,6 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
             'elementId' => 'id',
             'siteId' => 'siteId',
             'language' => 'language',
-            'updatedAt' => $date->getTimestamp(),
             'name' => 'name',
             'blocks' => array(
                 array(
@@ -83,6 +82,7 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
                     'content' => 'fakeToString'
                 )
             ),
+            'updatedAt' => $date->getTimestamp(),
         ), $document->getData());
     }
 }

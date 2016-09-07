@@ -37,10 +37,13 @@ class NodeTransformer implements ModelToElasticaTransformerInterface
             'elementId' => $node->getId(),
             'siteId' => $node->getSiteId(),
             'language' => $node->getLanguage(),
-            'updatedAt' => $node->getUpdatedAt()->getTimestamp(),
             'name' => $node->getName(),
             'blocks' => $blocksData
         );
+
+        if (!is_null($node->getUpdatedAt())) {
+            $documentData['updatedAt'] = $node->getUpdatedAt()->getTimestamp();
+        }
 
         $document = new Document($documentData['id'], $documentData);
 
