@@ -10,6 +10,7 @@ use OpenOrchestra\Elastica\Transformer\NodeTransformer;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
 use Phake;
+use OpenOrchestra\ModelInterface\Model\ReadAreaInterface;
 
 /**
  * Test NodeTransformerTest
@@ -44,7 +45,6 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function testTransform()
     {
-        $this->markTestSkipped();
         $date = new \DateTime();
 
         $block = Phake::mock(ReadBlockInterface::class);
@@ -57,6 +57,10 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
 
         Phake::when($this->displayBlockManager)->toString(Phake::anyParameters())->thenReturn('fakeToString');
 
+        $area = Phake::mock(ReadAreaInterface::class);
+        Phake::when($area)->getBlocks()->thenReturn(array($block, $block2));
+
+
         $node = Phake::mock(ReadNodeInterface::CLASS);
         Phake::when($node)->getId()->thenReturn('id');
         Phake::when($node)->getNodeId()->thenReturn('nodeId');
@@ -64,7 +68,8 @@ class NodeTransformerTest extends \PHPUnit_Framework_TestCase
         Phake::when($node)->getSiteId()->thenReturn('siteId');
         Phake::when($node)->getLanguage()->thenReturn('language');
         Phake::when($node)->getUpdatedAt()->thenReturn($date);
-        Phake::when($node)->getBlocks()->thenReturn(new ArrayCollection(array($block, $block2)));
+
+        Phake::when($node)->getAreas()->thenReturn(array($area));
 
         $document = $this->transformer->transform($node);
 
