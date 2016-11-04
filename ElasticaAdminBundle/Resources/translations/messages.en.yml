@@ -1,9 +1,9 @@
 open_orchestra_backoffice:
     block:
         elastica_search:
-            title: Elastica search block
+            title: Elastica search
         elastica_list:
-            title: Elastica result list block
+            title: Elastica result list
 
 open_orchestra_elastica_admin:
     block:
@@ -11,7 +11,7 @@ open_orchestra_elastica_admin:
             title: Elastica search
             description: Elastica search field
         elastica_list:
-            title: Elastica result list block
+            title: Elastica result list
             description: Elastica search results list
     form:
         elastica_list:

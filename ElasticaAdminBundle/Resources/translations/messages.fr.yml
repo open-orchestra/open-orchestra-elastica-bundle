@@ -1,17 +1,17 @@
 open_orchestra_backoffice:
     block:
         elastica_search:
-            title: Elastica block de recherche
+            title: Recherche Elastica
         elastica_list:
-            title: Elastica block liste de résultat
+            title: Liste de résultat Elastica 
 
 open_orchestra_elastica_admin:
     block:
         elastica_search:
-            title: Recherche elastica
-            description: Champs de recherche elastica
+            title: Recherche Elastica
+            description: Champs de recherche Elastica
         elastica_list:
-            title: Elastica block liste de résultat
+            title: Liste de résultat Elastica
             description: Liste de résultats de la recherche
     form:
         elastica_list:
