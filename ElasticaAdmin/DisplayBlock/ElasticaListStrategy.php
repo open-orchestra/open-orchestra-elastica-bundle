@@ -35,7 +35,7 @@ class ElasticaListStrategy extends AbstractStrategy
     {
         return $this->render('OpenOrchestraElasticaAdminBundle:Block/List:show.html.twig', array(
             'id' => $block->getId(),
-            'class' => $block->getClass(),
+            'style' => $block->getStyle(),
         ));
     }
 
