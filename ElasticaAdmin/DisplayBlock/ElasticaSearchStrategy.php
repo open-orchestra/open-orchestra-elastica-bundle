@@ -35,7 +35,7 @@ class ElasticaSearchStrategy extends AbstractStrategy
     {
         return $this->render('OpenOrchestraElasticaAdminBundle:Block/Search:show.html.twig', array(
             'id' => $block->getId(),
-            'class' => $block->getClass(),
+            'style' => $block->getStyle(),
         ));
     }
 

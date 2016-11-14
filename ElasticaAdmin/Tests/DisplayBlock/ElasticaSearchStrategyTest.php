@@ -46,7 +46,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
     /**
      * @param bool   $supports
      * @param string $component
-     * 
+     *
      * @dataProvider provideSupportsLinkedToBlockComponent
      */
     public function testSupport($supports, $component)
@@ -56,7 +56,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($supports, $this->strategy->support($block));
     }
-    
+
     /**
      * @return array
      */
@@ -82,13 +82,13 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
 
         $block = Phake::mock(ReadBlockInterface::CLASS);
         Phake::when($block)->getId()->thenReturn('id');
-        Phake::when($block)->getClass()->thenReturn('class');
+        Phake::when($block)->getStyle()->thenReturn('style');
 
         $this->strategy->show($block);
 
         Phake::verify($templating)->renderResponse(
             'OpenOrchestraElasticaAdminBundle:Block/Search:show.html.twig',
-            array('id' => 'id', 'class' => 'class'),
+            array('id' => 'id', 'style' => 'style'),
             null
         );
     }
