@@ -28,7 +28,8 @@
     "open-orchestra/open-orchestra-base-api-bundle": "self.version",
     "open-orchestra/open-orchestra-bbcode-bundle": "self.version",
     "open-orchestra/open-orchestra-libs": "self.version",
-    "open-orchestra/open-orchestra-user-bundle": "self.version"
+    "open-orchestra/open-orchestra-user-bundle": "self.version",
+    "open-orchestra/open-orchestra-workflow-function-bundle": "self.version"
   },
 
   "suggest": {
