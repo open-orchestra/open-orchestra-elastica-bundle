@@ -18,3 +18,6 @@ open_orchestra_elastica_admin:
             search_limit: Results limit
         elastica_search:
             node: Node to view results
+    block_configuration:
+        category:
+            search: Search

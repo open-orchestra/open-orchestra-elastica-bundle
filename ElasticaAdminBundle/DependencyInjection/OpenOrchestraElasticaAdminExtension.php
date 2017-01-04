@@ -31,6 +31,7 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         }
 
         $this->updateBlockParameter($container);
+        $this->updateBlockConfiguration($container);
     }
 
     /**
@@ -49,5 +50,27 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         }
         $blocks = array_merge($blocksAlreadySet, $blockType);
         $container->setParameter('open_orchestra.blocks', $blocks);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     */
+    protected function updateBlockConfiguration(ContainerBuilder $container)
+    {
+        $searchBlockConfiguration = array(
+            ElasticaListStrategy::NAME => array(
+                'category' => 'open_orchestra_elastica_admin.block_configuration.category.search',
+            ),
+            ElasticaSearchStrategy::NAME => array(
+                'category' => 'open_orchestra_elastica_admin.block_configuration.category.search',
+            ),
+        );
+
+        $blockConfiguration = array();
+        if ($container->hasParameter('open_orchestra_backoffice.block_configuration')) {
+            $blockConfiguration = $container->getParameter('open_orchestra_backoffice.block_configuration');
+        }
+        $blockConfiguration = array_merge($blockConfiguration, $searchBlockConfiguration);
+        $container->setParameter('open_orchestra_backoffice.block_configuration', $blockConfiguration);
     }
 }
