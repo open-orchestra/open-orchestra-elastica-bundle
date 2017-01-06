@@ -60,9 +60,13 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         $searchBlockConfiguration = array(
             ElasticaListStrategy::NAME => array(
                 'category' => 'open_orchestra_elastica_admin.block_configuration.category.search',
+                'name'     => 'open_orchestra_elastica_admin.block.elastica_list.title',
+                'description'     => 'open_orchestra_elastica_admin.block.elastica_list.description',
             ),
             ElasticaSearchStrategy::NAME => array(
                 'category' => 'open_orchestra_elastica_admin.block_configuration.category.search',
+                'name'     => 'open_orchestra_elastica_admin.block.elastica_search.title',
+                'description'     => 'open_orchestra_elastica_admin.block.elastica_search.description',
             ),
         );
 

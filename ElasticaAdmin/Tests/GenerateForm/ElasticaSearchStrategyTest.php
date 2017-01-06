@@ -82,6 +82,8 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
         Phake::verify($builder)->add('contentNodeId', 'oo_node_choice', array(
             'label' => 'open_orchestra_elastica_admin.form.elastica_search.node',
             'constraints' => new NotBlank(),
+            'group_id' => 'data',
+            'sub_group_id' => 'content',
         ));
     }
 }
