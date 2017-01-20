@@ -28,6 +28,8 @@ class ElasticaListStrategy extends AbstractBlockStrategy
     {
         $builder->add('searchLimit', 'integer', array(
             'label' => 'open_orchestra_elastica_admin.form.elastica_list.search_limit',
+            'group_id' => 'data',
+            'sub_group_id' => 'content',
         ));
     }
 
