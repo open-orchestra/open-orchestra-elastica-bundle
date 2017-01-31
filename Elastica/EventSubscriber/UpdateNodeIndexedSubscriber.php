@@ -36,7 +36,7 @@ class UpdateNodeIndexedSubscriber implements EventSubscriberInterface
     public function updateIndexedNode(NodeEvent $event)
     {
         $node = $event->getNode();
-        $lastPublishedNode = $this->nodeRepository->findOneCurrentlyPublished($node->getNodeId(), $node->getLanguage(), $node->getSiteId());
+        $lastPublishedNode = $this->nodeRepository->findOnePublished($node->getNodeId(), $node->getLanguage(), $node->getSiteId());
         if ($lastPublishedNode instanceof ReadNodeInterface) {
             $this->nodeIndexor->index($lastPublishedNode);
         } else {

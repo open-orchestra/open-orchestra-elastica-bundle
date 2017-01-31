@@ -64,7 +64,7 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testUpdateIndexedNode()
     {
         $publishedNode = Phake::mock(ReadNodeInterface::CLASS);
-        Phake::when($this->nodeRepository)->findOneCurrentlyPublished(Phake::anyParameters())->thenReturn($publishedNode);
+        Phake::when($this->nodeRepository)->findOnePublished(Phake::anyParameters())->thenReturn($publishedNode);
 
         $this->subscriber->updateIndexedNode($this->event);
 
@@ -76,7 +76,7 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateIndexedNodeWithNoPublishedNode()
     {
-        Phake::when($this->nodeRepository)->findOneCurrentlyPublished(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->nodeRepository)->findOnePublished(Phake::anyParameters())->thenReturn(null);
 
         $this->subscriber->updateIndexedNode($this->event);
 

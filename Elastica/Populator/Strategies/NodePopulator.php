@@ -31,9 +31,9 @@ class NodePopulator implements ElasticaPopulatorInterface
     public function populate()
     {
         $limit = 20;
-        $countNodes = $this->nodeRepository->countAllCurrentlyPublishedByType(NodeInterface::TYPE_DEFAULT);
+        $countNodes = $this->nodeRepository->countAllPublishedByType(NodeInterface::TYPE_DEFAULT);
         for ($skip = 0; $skip < $countNodes; $skip += $limit) {
-            $nodes = $this->nodeRepository->findAllCurrentlyPublishedByTypeWithSkipAndLimit(NodeInterface::TYPE_DEFAULT, $skip, $limit);
+            $nodes = $this->nodeRepository->findAllPublishedByTypeWithSkipAndLimit(NodeInterface::TYPE_DEFAULT, $skip, $limit);
             $this->multipleIndexor->indexMultiple($nodes);
         }
     }
