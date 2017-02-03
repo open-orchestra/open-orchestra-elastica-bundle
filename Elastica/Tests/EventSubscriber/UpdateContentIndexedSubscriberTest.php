@@ -63,7 +63,7 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
         Phake::when($event)->getContent()->thenReturn($content);
 
         $publishedContent = Phake::mock(ContentInterface::CLASS);
-        Phake::when($this->contentRepository)->findLastPublishedVersion(Phake::anyParameters())->thenReturn($publishedContent);
+        Phake::when($this->contentRepository)->findPublishedVersion(Phake::anyParameters())->thenReturn($publishedContent);
 
         $this->subscriber->updateIndexedContent($event);
 
@@ -79,7 +79,7 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
         $event = Phake::mock(ContentEvent::CLASS);
         Phake::when($event)->getContent()->thenReturn($content);
 
-        Phake::when($this->contentRepository)->findLastPublishedVersion(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->contentRepository)->findPublishedVersion(Phake::anyParameters())->thenReturn(null);
 
         $this->subscriber->updateIndexedContent($event);
 
