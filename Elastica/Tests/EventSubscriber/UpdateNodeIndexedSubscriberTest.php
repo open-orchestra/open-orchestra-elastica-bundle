@@ -54,8 +54,6 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     public function testSubscribedEVents()
     {
         $this->assertArrayHasKey(NodeEvents::NODE_CHANGE_STATUS, $this->subscriber->getSubscribedEvents());
-        $this->assertArrayHasKey(NodeEvents::NODE_DELETE, $this->subscriber->getSubscribedEvents());
-        $this->assertArrayHasKey(NodeEvents::NODE_RESTORE, $this->subscriber->getSubscribedEvents());
     }
 
     /**
@@ -81,25 +79,5 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->subscriber->updateIndexedNode($this->event);
 
         Phake::verify($this->indexor)->delete($this->node);
-    }
-
-    /**
-     * Test delete indexed node
-     */
-    public function testDeleteIndexedNode()
-    {
-        $this->subscriber->deleteIndexedNode($this->event);
-
-        Phake::verify($this->indexor)->delete($this->node);
-    }
-
-    /**
-     * Test restore indexed node
-     */
-    public function testRestoreIndexedNode()
-    {
-        $this->subscriber->restoreIndexedNode($this->event);
-
-        Phake::verify($this->indexor)->index($this->node);
     }
 }

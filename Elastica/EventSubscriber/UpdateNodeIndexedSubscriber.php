@@ -45,34 +45,12 @@ class UpdateNodeIndexedSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param NodeEvent $event
-     *
-     * @throws IndexorWrongParameterException
-     */
-    public function deleteIndexedNode(NodeEvent $event)
-    {
-        $this->nodeIndexor->delete($event->getNode());
-    }
-
-    /**
-     * @param NodeEvent $event
-     *
-     * @throws IndexorWrongParameterException
-     */
-    public function restoreIndexedNode(NodeEvent $event)
-    {
-        $this->nodeIndexor->index($event->getNode());
-    }
-
-    /**
      * @return array The event names to listen to
      */
     public static function getSubscribedEvents()
     {
         return array(
-            NodeEvents::NODE_CHANGE_STATUS => 'updateIndexedNode',
-            NodeEvents::NODE_DELETE        => 'deleteIndexedNode',
-            NodeEvents::NODE_RESTORE       => 'restoreIndexedNode',
+            NodeEvents::NODE_CHANGE_STATUS => 'updateIndexedNode'
         );
     }
 }
