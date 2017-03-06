@@ -39,7 +39,6 @@ class OpenOrchestraElasticaAdminExtension extends Extension
     {
         $blockType = array(
             ElasticaListStrategy::NAME,
-            ElasticaSearchStrategy::NAME,
         );
 
         $blocksAlreadySet = array();
