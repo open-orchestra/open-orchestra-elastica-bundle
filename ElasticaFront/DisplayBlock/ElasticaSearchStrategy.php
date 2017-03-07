@@ -3,7 +3,7 @@
 namespace OpenOrchestra\ElasticaFront\DisplayBlock;
 
 use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
-use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractDisplayBlockStrategy;
 use OpenOrchestra\ElasticaFront\Form\Type\SearchType;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Class ElasticaSearchStrategy
  */
-class ElasticaSearchStrategy extends AbstractStrategy
+class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
 {
     const NAME = 'elastica_search';
 
