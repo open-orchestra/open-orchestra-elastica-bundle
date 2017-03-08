@@ -6,7 +6,7 @@ use Elastica\Client;
 use Elastica\Query;
 use Elastica\QueryBuilder;
 use Elastica\Search;
-use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractDisplayBlockStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class ElasticaListStrategy
  */
-class ElasticaListStrategy extends AbstractStrategy
+class ElasticaListStrategy extends AbstractDisplayBlockStrategy
 {
     const NAME = 'elastica_list';
 
