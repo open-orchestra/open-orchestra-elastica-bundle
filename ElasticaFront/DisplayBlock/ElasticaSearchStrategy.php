@@ -95,6 +95,14 @@ class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
     }
 
     /**
+     * @return array
+     */
+    public function getBlockParameter()
+    {
+        return array('request.elastica_search');
+    }
+
+    /**
      * Get the name of the strategy
      *
      * @return string
