@@ -28,25 +28,7 @@ class OpenOrchestraElasticaAdminExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('generate_form.yml');
 
-        $this->updateBlockParameter($container);
         $this->updateBlockConfiguration($container);
-    }
-
-    /**
-     * @param ContainerBuilder $container
-     */
-    protected function updateBlockParameter(ContainerBuilder $container)
-    {
-        $blockType = array(
-            ElasticaListStrategy::NAME,
-        );
-
-        $blocksAlreadySet = array();
-        if ($container->hasParameter('open_orchestra.blocks')) {
-            $blocksAlreadySet = $container->getParameter('open_orchestra.blocks');
-        }
-        $blocks = array_merge($blocksAlreadySet, $blockType);
-        $container->setParameter('open_orchestra.blocks', $blocks);
     }
 
     /**
