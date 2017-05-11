@@ -5,7 +5,9 @@ namespace OpenOrchestra\Elastica\Tests\EventSubscriber;
 use OpenOrchestra\Elastica\EventSubscriber\UpdateNodeIndexedSubscriber;
 use OpenOrchestra\Elastica\Indexor\NodeIndexor;
 use OpenOrchestra\ModelInterface\Event\NodeEvent;
+use OpenOrchestra\ModelInterface\Model\NodeInterface;
 use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
+use OpenOrchestra\ModelInterface\Model\StatusInterface;
 use OpenOrchestra\ModelInterface\NodeEvents;
 use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,8 +24,9 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     protected $subscriber;
 
     protected $indexor;
-    protected $nodeRepository;
     protected $node;
+    protected $status;
+    protected $previousStatus;
     protected $event;
 
     /**
@@ -31,13 +34,16 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->nodeRepository = Phake::mock(ReadNodeRepositoryInterface::CLASS);
         $this->indexor = Phake::mock(NodeIndexor::CLASS);
-        $this->node = Phake::mock(ReadNodeInterface::CLASS);
+        $this->node = Phake::mock(NodeInterface::CLASS);
         $this->event = Phake::mock(NodeEvent::CLASS);
+        $this->status = Phake::mock(StatusInterface::CLASS);
+        $this->previousStatus = Phake::mock(StatusInterface::CLASS);
         Phake::when($this->event)->getNode()->thenReturn($this->node);
+        Phake::when($this->node)->getStatus()->thenReturn($this->status);
+        Phake::when($this->event)->getPreviousStatus()->thenReturn($this->previousStatus);
 
-        $this->subscriber = new UpdateNodeIndexedSubscriber($this->nodeRepository, $this->indexor);
+        $this->subscriber = new UpdateNodeIndexedSubscriber($this->indexor);
     }
 
     /**
@@ -61,12 +67,11 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateIndexedNode()
     {
-        $publishedNode = Phake::mock(ReadNodeInterface::CLASS);
-        Phake::when($this->nodeRepository)->findOnePublished(Phake::anyParameters())->thenReturn($publishedNode);
+        Phake::when($this->status)->isPublishedState()->thenReturn(true);
 
         $this->subscriber->updateIndexedNode($this->event);
 
-        Phake::verify($this->indexor)->index($publishedNode);
+        Phake::verify($this->indexor)->index($this->node);
     }
 
     /**
@@ -74,7 +79,7 @@ class UpdateNodeIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateIndexedNodeWithNoPublishedNode()
     {
-        Phake::when($this->nodeRepository)->findOnePublished(Phake::anyParameters())->thenReturn(null);
+        Phake::when($this->previousStatus)->isPublishedState()->thenReturn(true);
 
         $this->subscriber->updateIndexedNode($this->event);
 

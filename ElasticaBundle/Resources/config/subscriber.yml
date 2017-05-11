@@ -7,7 +7,6 @@ services:
     open_orchestra_elastica.subscriber.content_index:
         class: '%open_orchestra_elastica.subscriber.content_index.class%'
         arguments:
-            - '@open_orchestra_model.repository.content'
             - '@open_orchestra_elastica.indexor.content'
         tags:
             - { name: kernel.event_subscriber }
@@ -20,7 +19,6 @@ services:
     open_orchestra_elastica.subscriber.node_index:
         class: '%open_orchestra_elastica.subscriber.node_index.class%'
         arguments:
-            - '@open_orchestra_model.repository.node'
             - '@open_orchestra_elastica.indexor.node'
         tags:
             - { name: kernel.event_subscriber }

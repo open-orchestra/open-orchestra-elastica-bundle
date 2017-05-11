@@ -4,9 +4,7 @@ namespace OpenOrchestra\Elastica\EventSubscriber;
 
 use OpenOrchestra\Elastica\Indexor\NodeIndexor;
 use OpenOrchestra\ModelInterface\Event\NodeEvent;
-use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
 use OpenOrchestra\ModelInterface\NodeEvents;
-use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
 
@@ -15,16 +13,13 @@ use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
  */
 class UpdateNodeIndexedSubscriber implements EventSubscriberInterface
 {
-    protected $nodeRepository;
     protected $nodeIndexor;
 
     /**
-     * @param ReadNodeRepositoryInterface $nodeRepository
      * @param NodeIndexor                 $nodeIndexor
      */
-    public function __construct(ReadNodeRepositoryInterface $nodeRepository, NodeIndexor $nodeIndexor)
+    public function __construct(NodeIndexor $nodeIndexor)
     {
-        $this->nodeRepository = $nodeRepository;
         $this->nodeIndexor = $nodeIndexor;
     }
 
@@ -36,10 +31,10 @@ class UpdateNodeIndexedSubscriber implements EventSubscriberInterface
     public function updateIndexedNode(NodeEvent $event)
     {
         $node = $event->getNode();
-        $lastPublishedNode = $this->nodeRepository->findOnePublished($node->getNodeId(), $node->getLanguage(), $node->getSiteId());
-        if ($lastPublishedNode instanceof ReadNodeInterface) {
-            $this->nodeIndexor->index($lastPublishedNode);
-        } else {
+        if (true === $node->getStatus()->isPublishedState()
+        ) {
+            $this->nodeIndexor->index($node);
+        } elseif (true === $event->getPreviousStatus()->isPublishedState()) {
             $this->nodeIndexor->delete($node);
         }
     }
