@@ -4,10 +4,10 @@ namespace OpenOrchestra\Elastica\Tests\EventSubscriber;
 
 use OpenOrchestra\Elastica\Indexor\ContentIndexor;
 use OpenOrchestra\ModelInterface\Event\ContentEvent;
+use OpenOrchestra\ModelInterface\Model\StatusInterface;
 use Phake;
 use OpenOrchestra\ModelInterface\ContentEvents;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;
-use OpenOrchestra\ModelInterface\Repository\ContentRepositoryInterface;
 use OpenOrchestra\Elastica\EventSubscriber\UpdateContentIndexedSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -22,17 +22,26 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
     protected $subscriber;
 
     protected $indexor;
-    protected $contentRepository;
+    protected $content;
+    protected $event;
+    protected $status;
+    protected $previousStatus;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->contentRepository = Phake::mock(ContentRepositoryInterface::CLASS);
         $this->indexor = Phake::mock(ContentIndexor::CLASS);
+        $this->content = Phake::mock(ContentInterface::CLASS);
+        $this->event = Phake::mock(ContentEvent::CLASS);
+        $this->status = Phake::mock(StatusInterface::CLASS);
+        $this->previousStatus = Phake::mock(StatusInterface::CLASS);
+        Phake::when($this->event)->getContent()->thenReturn($this->content);
+        Phake::when($this->content)->getStatus()->thenReturn($this->status);
+        Phake::when($this->event)->getPreviousStatus()->thenReturn($this->previousStatus);
 
-        $this->subscriber = new UpdateContentIndexedSubscriber($this->contentRepository, $this->indexor);
+        $this->subscriber = new UpdateContentIndexedSubscriber($this->indexor);
     }
 
     /**
@@ -56,16 +65,11 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateIndexedContent()
     {
-        $content = Phake::mock(ContentInterface::CLASS);
-        $event = Phake::mock(ContentEvent::CLASS);
-        Phake::when($event)->getContent()->thenReturn($content);
+        Phake::when($this->status)->isPublishedState()->thenReturn(true);
 
-        $publishedContent = Phake::mock(ContentInterface::CLASS);
-        Phake::when($this->contentRepository)->findPublishedVersion(Phake::anyParameters())->thenReturn($publishedContent);
+        $this->subscriber->updateIndexedContent($this->event);
 
-        $this->subscriber->updateIndexedContent($event);
-
-        Phake::verify($this->indexor)->index($publishedContent);
+        Phake::verify($this->indexor)->index($this->content);
     }
 
     /**
@@ -73,14 +77,10 @@ class UpdateContentIndexedSubscriberTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateIndexedContentWithNoPublishedContent()
     {
-        $content = Phake::mock(ContentInterface::CLASS);
-        $event = Phake::mock(ContentEvent::CLASS);
-        Phake::when($event)->getContent()->thenReturn($content);
+        Phake::when($this->previousStatus)->isPublishedState()->thenReturn(true);
 
-        Phake::when($this->contentRepository)->findPublishedVersion(Phake::anyParameters())->thenReturn(null);
+        $this->subscriber->updateIndexedContent($this->event);
 
-        $this->subscriber->updateIndexedContent($event);
-
-        Phake::verify($this->indexor)->delete($content);
+        Phake::verify($this->indexor)->delete($this->content);
     }
 }

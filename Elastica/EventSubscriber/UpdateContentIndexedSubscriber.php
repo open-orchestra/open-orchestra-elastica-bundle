@@ -5,8 +5,6 @@ namespace OpenOrchestra\Elastica\EventSubscriber;
 use OpenOrchestra\Elastica\Indexor\ContentIndexor;
 use OpenOrchestra\ModelInterface\ContentEvents;
 use OpenOrchestra\ModelInterface\Event\ContentEvent;
-use OpenOrchestra\ModelInterface\Model\ContentInterface;
-use OpenOrchestra\ModelInterface\Repository\ContentRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
 
@@ -15,16 +13,13 @@ use OpenOrchestra\Elastica\Exception\IndexorWrongParameterException;
  */
 class UpdateContentIndexedSubscriber implements EventSubscriberInterface
 {
-    protected $contentRepository;
     protected $contentIndexor;
 
     /**
-     * @param ContentRepositoryInterface $contentRepository
      * @param ContentIndexor             $contentIndexor
      */
-    public function __construct(ContentRepositoryInterface $contentRepository, ContentIndexor $contentIndexor)
+    public function __construct(ContentIndexor $contentIndexor)
     {
-        $this->contentRepository = $contentRepository;
         $this->contentIndexor = $contentIndexor;
     }
 
@@ -36,12 +31,10 @@ class UpdateContentIndexedSubscriber implements EventSubscriberInterface
     public function updateIndexedContent(ContentEvent $event)
     {
         $content = $event->getContent();
-
-        $lastPublishedContent = $this->contentRepository->findPublishedVersion($content->getContentId(), $content->getLanguage());
-
-        if ($lastPublishedContent instanceof ContentInterface) {
-            $this->contentIndexor->index($lastPublishedContent);
-        } else {
+        if (true === $content->getStatus()->isPublishedState()
+        ) {
+            $this->contentIndexor->index($content);
+        } elseif (null !== $event->getPreviousStatus() && true === $event->getPreviousStatus()->isPublishedState()) {
             $this->contentIndexor->delete($content);
         }
     }
@@ -53,6 +46,7 @@ class UpdateContentIndexedSubscriber implements EventSubscriberInterface
     {
         return array(
             ContentEvents::CONTENT_CHANGE_STATUS => 'updateIndexedContent',
+            ContentEvents::CONTENT_UPDATE => 'updateIndexedContent',
         );
     }
 }
