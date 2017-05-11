@@ -3,7 +3,7 @@
 namespace OpenOrchestra\Elastica\Transformer;
 
 use Elastica\Document;
-use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockManager;
+use OpenOrchestra\BackOffice\DisplayBlock\DisplayBlockManager;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Model\ReadNodeInterface;
 
