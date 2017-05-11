@@ -2,9 +2,8 @@
 
 namespace OpenOrchestra\Elastica\Tests\Transformer;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Elastica\Document;
-use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockManager;
+use OpenOrchestra\BackOffice\DisplayBlock\DisplayBlockManager;
 use OpenOrchestra\Elastica\Transformer\ModelToElasticaTransformerInterface;
 use OpenOrchestra\Elastica\Transformer\NodeTransformer;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
