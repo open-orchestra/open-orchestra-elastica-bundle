@@ -22,7 +22,6 @@ class OpenOrchestraElasticaFrontExtension extends Extension
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('open_orchestra_elastica.orchestra_choice.front_language', array());
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('display_block.yml');
     }

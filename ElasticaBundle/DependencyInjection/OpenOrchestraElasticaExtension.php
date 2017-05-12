@@ -4,7 +4,6 @@ namespace OpenOrchestra\ElasticaBundle\DependencyInjection;
 
 use Elastica\Client;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
@@ -28,18 +27,5 @@ class OpenOrchestraElasticaExtension extends Extension
         $container->setDefinition('open_orchestra_elastica.client.elastica', $client);
 
         $container->setParameter('open_orchestra_elastica.index.name', $config['index_name']);
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        foreach (array(
-             'indexor',
-             'transformer',
-             'mapper',
-             'schema_generator',
-             'subscriber',
-             'factory',
-             'schema_initializer',
-             'populator'
-         ) as $file) {
-            $loader->load($file . '.yml');
-        }
     }
 }
