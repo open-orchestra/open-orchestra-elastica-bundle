@@ -3,7 +3,7 @@
 {% block content %}
     {% for data in searchData %}
         {% if (data.type == 'node') %}
-            <p><b> {{ 'open_orchestra_elastica_front.block_list.page'|trans }} </b> : <a href="{{ url(data.elementId) }}">{{ data.name }}</a></p>
+            <p><b> {{ 'open_orchestra_elastica_front.block_list.page'|trans }} </b> : <a href="{{ url_node(data.nodeId) }}">{{ data.name }}</a></p>
         {% else %}
             {% for key, value in data.data %}
                 <b>{{ key }}</b> => {{ value }}<br/>
