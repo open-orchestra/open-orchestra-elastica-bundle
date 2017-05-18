@@ -2,8 +2,8 @@
 
 namespace OpenOrchestra\ElasticaFront\Tests\DisplayBlock;
 
-use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use OpenOrchestra\DisplayBundle\DisplayBlock\DisplayBlockInterface;
+use OpenOrchestra\DisplayBundle\Manager\ContextInterface;
 use OpenOrchestra\ElasticaFront\DisplayBlock\ElasticaSearchStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
@@ -34,7 +34,7 @@ class ElasticaSearchStrategyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->currentSiteManager = Phake::mock(CurrentSiteIdInterface::CLASS);
+        $this->currentSiteManager = Phake::mock(ContextInterface::CLASS);
         $this->nodeRepository = Phake::mock(ReadNodeRepositoryInterface::CLASS);
         $this->router = Phake::mock(RouterInterface::CLASS);
         $this->formFactory = Phake::mock(FormFactory::CLASS);
