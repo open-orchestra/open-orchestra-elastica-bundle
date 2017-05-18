@@ -70,8 +70,8 @@ class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
         $formParameters = array('method' => 'GET');
 
         if ('' != $block->getAttribute('contentNodeId')) {
-            $language = $this->currentSiteManager->getCurrentSiteLanguage();
-            $siteId = $this->currentSiteManager->getCurrentSiteId();
+            $language = $this->currentSiteManager->getSiteLanguage();
+            $siteId = $this->currentSiteManager->getSiteId();
             $nodeId = $this->nodeRepository->findOnePublished($block->getAttribute('contentNodeId'), $language, $siteId)->getId();
             $formParameters['action'] = $this->router->generate($nodeId);
         }
