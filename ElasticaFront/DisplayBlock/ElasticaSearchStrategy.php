@@ -2,8 +2,8 @@
 
 namespace OpenOrchestra\ElasticaFront\DisplayBlock;
 
-use OpenOrchestra\BaseBundle\Context\CurrentSiteIdInterface;
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractDisplayBlockStrategy;
+use OpenOrchestra\DisplayBundle\Manager\ContextInterface;
 use OpenOrchestra\ElasticaFront\Form\Type\SearchType;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use OpenOrchestra\ModelInterface\Repository\ReadNodeRepositoryInterface;
@@ -30,14 +30,14 @@ class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
      * @param RequestStack                $requestStack
      * @param RouterInterface             $router
      * @param ReadNodeRepositoryInterface $nodeRepository
-     * @param CurrentSiteIdInterface      $currentSiteManager
+     * @param ContextInterface            $currentSiteManager
      */
     public function __construct(
         FormFactory $formFactory,
         RequestStack $requestStack,
         RouterInterface $router,
         ReadNodeRepositoryInterface $nodeRepository,
-        CurrentSiteIdInterface $currentSiteManager
+        ContextInterface $currentSiteManager
     ) {
         $this->router = $router;
         $this->formFactory = $formFactory;
@@ -70,8 +70,8 @@ class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
         $formParameters = array('method' => 'GET');
 
         if ('' != $block->getAttribute('contentNodeId')) {
-            $language = $this->currentSiteManager->getCurrentSiteDefaultLanguage();
-            $siteId = $this->currentSiteManager->getCurrentSiteId();
+            $language = $this->currentSiteManager->getSiteLanguage();
+            $siteId = $this->currentSiteManager->getSiteId();
             $nodeId = $this->nodeRepository->findOnePublished($block->getAttribute('contentNodeId'), $language, $siteId)->getId();
             $formParameters['action'] = $this->router->generate($nodeId);
         }
