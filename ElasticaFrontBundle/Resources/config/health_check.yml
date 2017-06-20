@@ -1,0 +1,10 @@
+parameters:
+    open_orchestra_elastica_front.health_check.elastica_connexion.class: OpenOrchestra\ElasticaFront\HealthCheck\ElasticSearchConnexionTest
+
+services:
+    open_orchestra_model.health_check.elastica_connexion:
+        class: '%open_orchestra_elastica_front.health_check.elastica_connexion.class%'
+        arguments:
+            - '@open_orchestra_elastica.client.elastica'
+        tags:
+            - { name: open_orchestra_base.health_check.test }
