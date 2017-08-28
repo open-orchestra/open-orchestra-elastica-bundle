@@ -79,6 +79,8 @@ class ElasticaListStrategy extends AbstractDisplayBlockStrategy
 
         return $this->render('OpenOrchestraElasticaFrontBundle:Block/List:show.html.twig', array(
             'searchData' => $searchData,
+            'id' => $block->getId(),
+            'class' => $block->getStyle(),
         ));
     }
 

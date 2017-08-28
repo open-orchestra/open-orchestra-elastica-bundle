@@ -81,6 +81,8 @@ class ElasticaSearchStrategy extends AbstractDisplayBlockStrategy
 
         return $this->render('OpenOrchestraElasticaFrontBundle:Block/Search:show.html.twig', array(
             'form' => $form->createView(),
+            'id' => $block->getId(),
+            'class' => $block->getStyle(),
         ));
     }
 
